@@ -1,3 +1,6 @@
+import {DEFULT_CONFIG} from './constants.js';
+import {addToastContainer} from './toaster.js';
+
 const originalConsoleObject = {
   log: console.log,
   warn: console.warn,
@@ -5,26 +8,9 @@ const originalConsoleObject = {
   error: console.error,
 }
 
-const config = {
-  alertTimeout: 0,      
-  alertTrigger: "42",     // custom "stop-word" that triggers the alert
-  alertMethod: "alert",   // "alert", "promt" or "confirm"
-  logMethod: "warn",      // "log", "warn", "info" or "error"
-  isOnPause: false,       // if true, console object is redefined but no alerts are triggered
-  isDisabled: false,      // if true, console object left as is
-  isShowToast: false,     // if true, shows small toast message in the right top corner
-  isSanitiseInput: true,  // if true, converts arguments to text
-  isShowAlertTitle: true, // if false, sends arguments to alert() function as is 
-  customMethods: ["alert", "loh"], // adds additional custom methods to the console object
-  redefinedMethods: ["log", "warn", "info", "error"], // list of console object methods to redefine
-  customFunctionName: 'a', // if not empty, adds custom method to the window object
-  preHook: () => {originalConsoleObject.log('pre hook')},   // function to be run before the alert()
-  afterHook: () => {originalConsoleObject.log('after hook')}, // function to be run before the alert()
-}
-
-
 const redefineConsoleMethods = (config) => {
-	return if (config.isDisabled)
+	if (config.isDisabled) {return null}
+  let toasts = addToastContainer();
 
   // adds custom methods to the originalConsoleObject
   // default method is set to "warn"
@@ -33,55 +19,83 @@ const redefineConsoleMethods = (config) => {
   );
 
   // message to show in the alert() or toast()
-  // converts arguments to a text if isSanitiseInput is set to true
-  const formatMessage = (methodName, args) => {
-  	const message = consfig.isSanitiseInput ? "" : args;
-    config.isShowAlertTitle ? `console.${methodName} message:\n${message}` : message;
+  // converts arguments to a text if isStringifyInput is set to true
+  const formatMessage = ({methodName, args}) => {
+    config.alertTrigger && args.shift();
+  	const message = config.isStringifyInput ? JSON.stringify(args) : args;
+    return config.isShowAlertTitle ? `console.${methodName} message:\n${message}` : message;
   }
 
   // runs alert(), promt() or confirm(). Default is "alert"
   const showAlert = (message) => 
-    || window[config.alertMethod || "alert"](message);
+    window[config.alertMethod || "alert"](message);
  
   // shows small toast message in the right top corner
-  const showToast = (message) =>
-    config.isOnPause || window.prompt(message);
+  const showToast = ({message, methodName}) => {
+    toasts.add({
+      message, methodName, 
+      position: config.toastPosition,
+      timeout: config.toastTimeout,
+    });
+  }
 
-  // defines what to show and triggers the alert.
-  const consoleAlert = (args, methodName) => {
-    // runs original console method
+  const showMessage = ({methodName, args}) => {
+    const message = formatMessage({methodName, args});
+    switch (config.showToast) {
+      case "all":  // show toast instead of alert()
+        showToast({message, methodName});
+        break;
+      case "none": // always show alert()
+        showAlert(message);
+        break;
+      case "redefined": // show toast for redefined instead of alert()
+        config.redefinedMethods.includes(methodName)  
+          ? showToast({message, methodName}) 
+          : showAlert(message);
+        break;
+      case "custom":
+        config.customMethods.includes(methodName) &&
+          showToast({message, methodName});
+        break;
+      default:
+        showAlert(message);
+    }
+  }
+
+  // defines what to show and triggers the alert() and hooks.
+  const consoleAlert = ({args, methodName}) => {
+    const isShowAlert = !config.alertTrigger || args[0] === config.alertTrigger;
+    
+    // runs original console method for all but customGlobalFunctionName
   	methodName && originalConsoleObject[methodName](args);
-  	message = formatMessage(methodName, args);
 
-    // if custom trigger is set we show the alert only in case trigger is in the arguments
-    // if no triggers provided, we show the alert
-    if (config.alertTrigger === "" || args[0] === config.alertTrigger) {
-      if (!config.isOnPause ) {
-      	config.preHook()
-      	isShowToast ? showToast(message) : showAlert(message);
-      	config.afterHook()
+    if (isShowAlert) {
+      if (!config.isOnPause) {
+      	typeof config.preHook == 'function' && config.preHook({methodName, args});
+        showMessage({methodName, args})
+      	typeof config.afterHook == 'function' &&  config.afterHook({methodName, args});
       }
     }
   }
 
-  // shows custom message immediatelly or with a timeout.
-  const showCustomMessage = (args, methodName) => {
+  // shows custom message immediatelly or with a timeout
+  const redefineConsoleMethod = ({methodName, args}) => {
     if (config.alertTimeout) {
-      setTimeout(consoleAlert, config.alertTimeout, args, methodName);
+      setTimeout(consoleAlert, config.alertTimeout, {methodName, args});
     } else {
-      consoleAlert(args, methodName);
+      consoleAlert({methodName, args});
     }
   }
 
   // redefines original console object.
   [...config.customMethods, ...config.redefinedMethods].map((methodName) =>
-    console[methodName] = (args) => showCustomMessage(args, methodName)
+    console[methodName] = (...args) => redefineConsoleMethod({args, methodName})
   )
 
   // ads custom method that will trigger allert().
-  if (!!customFunctionName) {
-    window[customFunctionName] = (args) => showCustomMessage(args)
+  if (!!config.customGlobalFunctionName) {
+    window[config.customGlobalFunctionName] = (...args) => redefineConsoleMethod({args})
   }
 }
 
-redefineConsoleMethods(config);
+redefineConsoleMethods(DEFULT_CONFIG);
