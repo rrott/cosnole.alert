@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Console Alert",
+  "version": "0.0.1",
+  "description": "console.alert() function to use when alert() is not available.",
+  "short_name": "Console Alert",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_start",
+      "js": ["index.js"]
+    }
+  ],
+  "web_accessible_resources": [
+  	"consoleReplacer.js"
+  ]
+}
