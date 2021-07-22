@@ -1,95 +1,82 @@
-.console-alert-toasts
- {
+.console-alert-toasts {
   position: fixed;
-  width: 25rem;
+  top: 0;
+  right: 2rem;
+  min-width: 25rem;
+  max-width: 45rem;
   pointer-events: none;
-  z-index: 1000000;
+  z-index: 100000;
 }
-.console-alert-toasts_top-right{
-  top: 0;
-  right: 0;
-}
-.console-alert-toasts_top-left{
-  left:0;
-  top:0;
-}
-.console-alert-toasts_bottom-left{
-  left: 0;
-  bottom:0;
-}
-.console-alert-toasts_bottom-right{
-  bottom:0;
-  right: 0;
-}
-.console-alert-toasts_top-center{
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-}
-.console-alert-toasts_bottom-center{
-  bottom:0;
-  left: 50%;
-  transform: translateX(-50%);
-}
+
 .console-alert-toast {
+  padding:  1rem;
+  margin:  1rem;
+  border: 1px solid currentColor;
   position: relative;
-  padding: 20px 17px;
-  margin: 20px;
-  border-radius: 10px;
-  background: #F5F5F5;
-  cursor: pointer;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  animation-duration:  .3s;
-  animation-name: Toasts;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  transition-timing-function: ease;
+  animation-duration: .3s;
+  animation-name: FadeIn;
   animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   pointer-events: all;
 }
 
 .console-alert-toasts_fade-out {
-  animation-name: ToastsFadeOut;
+  animation-name: FadeOut;
   animation-duration: .3s;
   animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   animation-fill-mode: forwards;
 }
 
-.console-alert-toasts pre,
-.console-alert-toasts h4 {
-  margin: 3px 0!important;
+.console-alert-toast__copy {
+  margin: 0!important;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  color: darkgray;
+  cursor: pointer;
 }
 
-.console-alert-toast__title {
-  font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.console-alert-toast__text {
+.console-alert-toast__message {
+  white-space: pre-wrap; 
+  word-break: break-all;
+  margin: 0!important;
   font-size: 14px;
   color: #777;
 }
 
-/** toast types */
 .console-alert-toasts_log {
-  border-bottom: 2px solid #51C625;
+  box-shadow: 0 1px 8px black;
+  background-color: whitesmoke;
+  color: #333333;
 }
 
 .console-alert-toasts_warn {
-  border-bottom: 2px solid #DB9215;
+  box-shadow: 0 1px 8px orange;
+  background-color: whitesmoke;
+  color: #f2c94c;
 }
 
 .console-alert-toasts_error {
-  border-bottom: 2px solid #DB2B1D;
+  box-shadow: 0 1px 8px red;
+  background-color: whitesmoke;
+  color: #eb5757;
 }
 
 .console-alert-toasts_info {
-  border-bottom: 2px solid #27ABDB;
+  box-shadow: 0 1px 8px green;
+  background-color: whitesmoke;
+  color: #6fcf97;
 }
 
-@keyframes Toasts {
+@keyframes FadeIn {
   from {
-    transform: translate3d(400px, 0, 0);;
+    transform: translate3d(800px, 0, 0);;
     opacity: 0;
   }
   to {
@@ -98,13 +85,13 @@
   }
 }
 
-@keyframes ToastsFadeOut {
+@keyframes FadeOut {
   from {
     transform: translate3d(0, 0, 0);
     opacity: 1;
   }
   to {
-    transform: translate3d(400px, 0, 0);
+    transform: translate3d(800px, 0, 0);
     opacity: 0;
   }
 }

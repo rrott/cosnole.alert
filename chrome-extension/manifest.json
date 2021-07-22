@@ -1,9 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "Console Alert",
-  "version": "0.0.1",
-  "description": "console.alert() function to use when alert() is not available.",
-  "short_name": "Console Alert",
+  "name": "cosnole.alert",
+  "version": "0.1.0",
+  "description": "It extends browser's console object with additional loging functionality and he console.alert() function.",
+  "short_name": "cosnole.alert",
+  "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -13,12 +14,9 @@
     }
   ],
   "browser_action": {
-     // "default_icon": "icon.png",
+     "default_icon": "icon.svg",
      "default_popup": "popup.html"
   },
-  "permissions": [
-     "activeTab"
-  ],
   "web_accessible_resources": [
   	"consoleReplacer.js",
     "constants.js",

@@ -10,31 +10,24 @@ const originalConsoleObject = {
 
 const redefineConsoleMethods = (config) => {
 	if (config.isDisabled) {return null}
-  let toasts = addToastContainer();
-
-  // adds custom methods to the originalConsoleObject
-  // default method is set to "warn"
+  const toasts = addToastContainer();
+  
   config.customMethods.map((methodName) =>
     originalConsoleObject[methodName] = console[config.logMethod || 'warn']
   );
 
-  // message to show in the alert() or toast()
-  // converts arguments to a text if isStringifyInput is set to true
   const formatMessage = ({methodName, args}) => {
     config.alertTrigger && args.shift();
   	const message = config.isStringifyInput ? JSON.stringify(args) : args;
     return config.isShowAlertTitle ? `console.${methodName} message:\n${message}` : message;
   }
 
-  // runs alert(), promt() or confirm(). Default is "alert"
   const showAlert = (message) => 
     window[config.alertMethod || "alert"](message);
  
-  // shows small toast message in the right top corner
   const showToast = ({message, methodName}) => {
     toasts.add({
       message, methodName, 
-      position: config.toastPosition,
       timeout: config.toastTimeout,
     });
   }
@@ -42,13 +35,13 @@ const redefineConsoleMethods = (config) => {
   const showMessage = ({methodName, args}) => {
     const message = formatMessage({methodName, args});
     switch (config.showToast) {
-      case "all":  // show toast instead of alert()
+      case "all":
         showToast({message, methodName});
         break;
-      case "none": // always show alert()
+      case "none":
         showAlert(message);
         break;
-      case "redefined": // show toast for redefined instead of alert()
+      case "redefined":
         config.redefinedMethods.includes(methodName)  
           ? showToast({message, methodName}) 
           : showAlert(message);
@@ -62,12 +55,9 @@ const redefineConsoleMethods = (config) => {
     }
   }
 
-  // defines what to show and triggers the alert() and hooks.
   const consoleAlert = ({args, methodName}) => {
     const isShowAlert = !config.alertTrigger || args[0] === config.alertTrigger;
-    
-    // runs original console method for all but customGlobalFunctionName
-  	methodName && originalConsoleObject[methodName](args);
+    methodName && originalConsoleObject[methodName](args);
 
     if (isShowAlert) {
       if (!config.isOnPause) {
@@ -78,7 +68,6 @@ const redefineConsoleMethods = (config) => {
     }
   }
 
-  // shows custom message immediatelly or with a timeout
   const redefineConsoleMethod = ({methodName, args}) => {
     if (config.alertTimeout) {
       setTimeout(consoleAlert, config.alertTimeout, {methodName, args});
@@ -87,12 +76,10 @@ const redefineConsoleMethods = (config) => {
     }
   }
 
-  // redefines original console object.
   [...config.customMethods, ...config.redefinedMethods].map((methodName) =>
     console[methodName] = (...args) => redefineConsoleMethod({args, methodName})
   )
 
-  // ads custom method that will trigger allert().
   if (!!config.customGlobalFunctionName) {
     window[config.customGlobalFunctionName] = (...args) => redefineConsoleMethod({args})
   }
