@@ -6,8 +6,8 @@
   </head>
   <body>
     <div class="buttons">
+      <span class="buttons__pause">[ pause ]</span>
       <span class="buttons__disable">[disable]</span>
-      <span class="buttons__pause">[pause]</span>
     </div>
 
     <div class="container">
@@ -182,7 +182,12 @@
       <input type="radio" name="tabs" id="history">
       <label class="tabs-label" for="history">[logs]</label>
       <div class="tab">
-        <p>Logs</p>
+        <div class="settings">
+        	<div class="line" ></div>
+        	<pre>
+        		console.log() calls log. TBD
+        	</pre>
+        </div>
       </div>
 
       <input type="radio" name="tabs" id="about">
@@ -192,11 +197,17 @@
         <h3>Extends browser's console and window objects to:</h3>
         <ul>
           <li>show toast messages on all console.log() calls</li>
-          <li>stop js runtime and call alert() on all console.log() calls</li>
           <li>attach alert() function to the console object</li>
+          <li>stop js runtime and call alert() on all or pre-defined console.log() calls</li>
           <li>attach custom methods to the console and window object</li>
           <li>run pre- and after-hooks methods around console.log() call</li>
         </ul>
+        <div class="line" ></div>
+        <span>
+        	<strong>author:</strong> <a href='https://rrott.com'>rrott</a> <br />
+        	<strong>source code:</strong> <a href='https://github.com/rrott/cosnole.alert'>github.com/rrott/cosnole.alert</a> <br />
+        	<strong>documentation:</strong> <a href='https://rrott.com/cosnole.alert'>https://rrott.com/cosnole.alert</a> <br />
+        </span>
       </div>
     </div>
     </div>
@@ -210,7 +221,7 @@
   </body>
   <style>
     svg {
-      opacity: 0.5;
+      opacity: 0.6;
       position: fixed;
       bottom: 1rem;
       right: 1.25rem;
@@ -236,16 +247,16 @@
       top: 0;
       right: 0;
       min-width: 7rem;
-      height: 1rem;
+      height: 2rem;
       display: flex;
       align-items: flex-end;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-between;
       padding: 0.5rem;
     }
     .buttons__pause {
       cursor: pointer;
-      font-weight: bold;
+      /*font-weight: bold;*/
       color: darkgray;
     }
      .buttons__pause:hover {
@@ -258,7 +269,7 @@
     }
     .buttons__disable {
       cursor: pointer;
-      font-weight: bold;
+      /*font-weight: bold;*/
       color: darkgray;
     }
      .buttons__disable:hover {
