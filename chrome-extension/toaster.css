@@ -2,8 +2,8 @@
   position: fixed;
   top: 0;
   right: 2rem;
-  min-width: 25rem;
-  max-width: 45rem;
+  min-width: 35rem;
+  max-width: 35rem;
   pointer-events: none;
   z-index: 100000;
 }
