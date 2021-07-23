@@ -37,8 +37,17 @@
   margin: 0!important;
   position: absolute;
   top: 0.25rem;
-  right: 0.5rem;
+  right: 2rem;
   color: darkgray;
+  cursor: pointer;
+}
+
+.console-alert-toast__close {
+  margin: 0!important;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  color: orange;
   cursor: pointer;
 }
 

@@ -1,25 +1,34 @@
-const addToastContainer = () => {
+const Toaster = {
+  toasts: {},
+  add: () => {},
+};
+
+const initToaster = () => {
   let toastIndex = 0;
-  const Toaster = {
-    toasts: {},
-    add: () => {},
-  };
+
+  if (document.readyState !== 'complete') {
+    window.addEventListener("DOMContentLoaded", initToaster);
+  }
 
   const toastContainer = document.createElement('div');
   toastContainer.className = 'console-alert-toasts';
   toastContainer.classList.add('console-alert-toasts_top-right');
-  document.body.appendChild(toastContainer);
+  (document.body || document.documentElement).appendChild(toastContainer);
 
   Toaster.add = ({message, methodName, timeout}) => {
     const messageContainer = document.createElement('pre');
+    const closeButton = document.createElement('span');
     const copyButton = document.createElement('span');
     const toast = document.createElement('div');
 
     messageContainer.className = 'console-alert-toast__message';
     messageContainer.innerHTML = message;
 
+    closeButton.className = 'console-alert-toast__close';
+    closeButton.innerHTML = '[x]';
+
     copyButton.className = 'console-alert-toast__copy';
-    copyButton.innerHTML = 'copy';
+    copyButton.innerHTML = '[copy]';
     copyButton.onclick = () => {
       const textarea = document.createElement('textarea');
       textarea.value = message;
@@ -34,6 +43,7 @@ const addToastContainer = () => {
     toast.id = `toast-${++toastIndex}`;
     
     toast.appendChild(copyButton);
+    toast.appendChild(closeButton);
     toast.appendChild(messageContainer);
 
     toast.hide = () => {
@@ -57,4 +67,4 @@ const addToastContainer = () => {
   return Toaster;
 }
 
-export {addToastContainer}
+export {initToaster}

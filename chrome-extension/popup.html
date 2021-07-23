@@ -5,230 +5,355 @@
     <script src="popup.js"></script>
   </head>
   <body>
-  			<div class="buttons">
-			<button>pause</button>
-			<button>disable</button>
-		</div>
+    <div class="buttons">
+      <span class="buttons__disable">[disable]</span>
+      <span class="buttons__pause">[pause]</span>
+    </div>
 
-		<div class="container">
-		<div class="tabs">
-		  <input type="radio" name="tabs" id="settings" checked="checked">
-		  <label class="tabs-label" for="settings">Settings</label>
-		  <div class="tab">
-		    <div class="settings">
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">Redefined Methods:</span>
-		    		<span class="settings-item-value">
-		    			<label class="checkbox">
-							  <input type="checkbox" checked="checked">
-							  <span class="checkmark"></span>
-							  log
-							</label>
+    <div class="container">
+    <div class="tabs">
+      <input type="radio" name="tabs" id="options" checked="checked">
+      <label class="tabs-label" for="options">[options]</label>
+      <div class="tab">
+        <div class="settings">
+          <div class="line" ></div>
 
+          <div class="settings-item">
+            <span class="settings-item-title">Redefined console Methods:</span>
+            <span class="settings-item-value">
+              <div class="settings-item-value__list">
+                <label class="checkbox">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                error
+                </label>
+
+                <label class="checkbox">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                  
+                  warn
+                </label>
+
+                <label class="checkbox">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                  info
+                </label>
+
+                <label class="checkbox">
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                  log
+                </label>
+                </div>
+            </span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-item-title">Custom console Methods:</span>
+            <span class="settings-item-value">
               <label class="checkbox">
-							  <input type="checkbox" checked="checked">
-							  <span class="checkmark"></span>
-							  warn
-							</label>
-
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+                alert
+              </label>
               <label class="checkbox">
-							  <input type="checkbox" checked="checked">
-							  <span class="checkmark"></span>
-							  info
-							</label>
-
+                <input type="text" class="input" placeholder="separate by comma" >
+              </label>
+            </span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-item-title">Custom window Methods:</span>
+            <span class="settings-item-value">
+              <div></div>
               <label class="checkbox">
-							  <input type="checkbox" checked="checked">
-							  <span class="checkmark"></span>
-							  error
-							</label>
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">Custom Methods:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">customGlobalFunctionName:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">isShowAlertTitle:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">alertTimeout:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">showToast:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">toastPosition:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">toastTimeout:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">isShowAlertTitle:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    </div>
+                <input type="text" class="input" placeholder="separate by comma" >
+              </label>
+            </span>
+          </div>
 
-		  </div>
-		  
-		  <input type="radio" name="tabs" id="advanced">
-		  <label class="tabs-label" for="advanced">Advanced</label>
-		  <div class="tab">
-		    <div class="settings">
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">alertTrigger:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">alertMethod:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">logMethod:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    	<div class="settings-item">
-		    		<span class="settings-item-title">isStringifyInput:</span>
-		    		<span class="settings-item-value">
-		    			<input type="checkbox" checked="checked">
-		    		</span>
-		    	</div>
-		    </div>
-		  </div>
-		  
-		  <input type="radio" name="tabs" id="history">
-			<label class="tabs-label" for="history">Logs</label>
-			<div class="tab">
-	      <p>Logs</p>
-	    </div>
+          <div class="line" ></div>
+          <div class="settings-item">
+            <span class="settings-item-checkboxes">
+            	<label class="checkbox">
+                <input type="checkbox" checked="checked">
+              </label>
+            	 Stringify Output
+            </span>
 
-		  <input type="radio" name="tabs" id="about">
-		  <label class="tabs-label" for="about">About</label>
-		  <div class="tab">
-		    <h1>About</h1>
-		    <p>test</p>
-		  </div>
-		</div>
-		</div>
+            <span class="settings-item-checkboxes">
+            	<label class="checkbox">
+                <input type="checkbox" checked="checked">
+              </label>
+            	 Show Alert Title
+            </span>
+          </div>
+          <div class="line" ></div>
+          <div class="settings-item">
+            <span class="settings-item-title">Show Toasts For:</span>
+            <span class="settings-item-value">
+              <div></div>
+              <select class="select" size="1" name="showToast">
+                <option value="all" selected>All</option>
+                <option value="redefined">Redefined Methods</option>
+                <option value="custom">Custom Methods</option>
+                <option value="none">None</option>
+               </select>
+            </span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-item-title">Auto-hide Toasts(seconds):</span>
+            <span class="settings-item-value">
+              <div></div>
+              <input type="text" class="input" placeholder="0 to disable" >
+            </span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-item-title">Alert Timeout(seconds):</span>
+            <span class="settings-item-value">
+              <div></div>
+              <input type="text" class="input" placeholder="0 to disable" >
+            </span>
+          </div>
+          <div class="line" ></div>
+        </div>
+
+      </div>
+      
+      <input type="radio" name="tabs" id="advanced">
+      <label class="tabs-label" for="advanced">[advanced]</label>
+      <div class="tab">
+        <div class="settings">
+        	<div class="line" ></div>
+
+          <div class="settings-item">
+            <span class="settings-item-title">Trigger to call alert():</span>
+            <span class="settings-item-value">
+              <div></div>
+              <label class="checkbox">
+                <input type="text" class="input" placeholder="e.g.: 42 or oklahoma" >
+              </label>
+            </span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-item-title">Method to use as alert():</span>
+            <span class="settings-item-value">
+              <div></div>
+              <label class="checkbox">
+                <input type="text" class="input" placeholder="e.g.: alert, confirm, promt" >
+              </label>
+            </span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-item-title">Reflect alert() in console using:</span>
+            <span class="settings-item-value">
+              <div></div>
+              <label class="checkbox">
+                <input type="text" class="input" placeholder="e.g.: log, warn, error, info" >
+              </label>
+            </span>
+          </div>
+          <div class="settings-item">
+            <span class="settings-item-checkboxes">
+            	pre-hook
+            	<label class="checkbox">
+                <textarea 
+                  placeholder="anonymous function to be run before alert() is called"
+                  rows="4" cols="57" name="text"
+                ></textarea>
+              </label>
+            </span>
+					</div>
+          <div class="settings-item">
+            <span class="settings-item-checkboxes">
+            	after-hook
+            	<label class="checkbox">
+                <textarea 
+                  placeholder="anonymous function to be run after alert() is called"
+                  rows="4" cols="57" name="text"
+                ></textarea>
+              </label>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      
+      <input type="radio" name="tabs" id="history">
+      <label class="tabs-label" for="history">[logs]</label>
+      <div class="tab">
+        <p>Logs</p>
+      </div>
+
+      <input type="radio" name="tabs" id="about">
+      <label class="tabs-label" for="about">[about]</label>
+      <div class="tab">
+        <h1>cosnole.alert()</h1>
+        <h3>Extends browser's console and window objects to:</h3>
+        <ul>
+          <li>show toast messages on all console.log() calls</li>
+          <li>stop js runtime and call alert() on all console.log() calls</li>
+          <li>attach alert() function to the console object</li>
+          <li>attach custom methods to the console and window object</li>
+          <li>run pre- and after-hooks methods around console.log() call</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+    <svg width="64px" height="64px" viewBox="0 0 126 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
+        <path stroke="#000000" stroke-width="2" d="M63,20.9983616 L124.267002,127 L1.73299801,127 L63,20.9983616 Z"></path>
+      </g>
+    </svg>
+
   </body>
   <style>
-  	.buttons {
-  		position: absolute;
-  		top: 0;
-  		right: 0;
-  		width: 6rem;
-  		height: 3rem;
-  		display: flex;
-  		flex-direction: column;
-  		justify-content: space-between;
-  		padding: 0.5rem;
-  	}
-  	.buttons button {
-  		cursor: pointer;
+    svg {
+      opacity: 0.5;
+      position: fixed;
+      bottom: 1rem;
+      right: 1.25rem;
+    }
 
-  	}
-  	.tabs-label {
-  		font-size: 1.6rem;
-  		font-weight: normal;
-  				order: 1;
-		display: flex;
-		/*height: 2rem;*/
-		padding: 0.5rem;
-		padding-top:  0.25rem;
-		cursor: pointer;
-	  background: rgb(239, 239, 239);
-	  /*font-weight: bold;*/
-	      align-items: center;
-	  transition: background ease 0.2s;
-  	}
-  	.settings {
-  		display: flex;
-  		flex-direction: column;
-  		width: 100%;
-  	}
-  	.settings-item {
-  		display: flex;
-  		flex-direction: row;
-  		/*margin: 0.5rem;*/
-  		justify-content: space-between;
-  		padding-top: 0.5rem;
-  	}
-  	.settings-item-title {
-  		font-weight: bold;
-  	}
-  	.settings-item-value {
-  		display: flex;
-  		flex-direction: row;
-  	}
-  	.settings-item-value input {
-  		padding-left: 0.5rem;
-  	}
-	  .container {
-		  	width: 35rem;
-		  	height: 15rem;
-		  		  	box-sizing: border-box;
-		  font-weight: 300;
-		  line-height: 1.5;
-		  margin: 0 auto;
-		  font-size: 112%;
-/*		  display: flex;
-		  flex-direction: row;
-		  justify-content: space-between;*/
-	  }
-		.tabs {
-			display: flex;
-			flex-wrap: wrap;
-			    /*padding-top: 1rem;*/
-		}
-	.tabs .tab {
-	  order: 99;
-	  flex-grow: 1;
-		width: 100%;
-		display: none;
-	  padding: 1rem;
-	  background: #fff;
+    .line {
+      height: 1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid lightgray;
+    }
+    .input {
+      min-width: 10rem;
+      width: 10rem;
+    }
+    .select {
+      min-width: calc(11rem - 2px);
+      width: calc(11rem - 2px);
+    }
 
-	}
-	.tabs input[type="radio"] {
-		display: none;
-	}
-	.tabs input[type="radio"]:checked + label {
-		background: #fff;
-	}
-	.tabs input[type="radio"]:checked + label + .tab {
-		display: block;
-	}
+    .buttons {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      min-width: 7rem;
+      height: 1rem;
+      display: flex;
+      align-items: flex-end;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0.5rem;
+    }
+    .buttons__pause {
+      cursor: pointer;
+      font-weight: bold;
+      color: darkgray;
+    }
+     .buttons__pause:hover {
+      color: green;
+    }
+    .buttons__pause_active {
+      cursor: pointer;
+      font-weight: bold;
+      color: orange;
+    }
+    .buttons__disable {
+      cursor: pointer;
+      font-weight: bold;
+      color: darkgray;
+    }
+     .buttons__disable:hover {
+      color: red;
+    }
+    .buttons__disable__active {
+      cursor: pointer;
+      font-weight: bold;
+      color: red;
+    }
+    .tabs-label {
+      margin: 0 !important;
+      color: black;
+      cursor: pointer;
+      font-weight: normal;
+      order: 1;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      cursor: pointer;
+      background: lightgray;
+      /*font-weight: bold;*/
+      display: flex;
+      transition: background ease 0.5s;
+      }
+      .settings {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .settings-item {
+        display: flex;
+        flex-direction: row;
+        /*margin: 0.5rem;*/
+        justify-content: space-between;
+        padding-top: 0.5rem;
+      }
+      .settings-item-title {
+        font-weight: bold;
+        cursor: default;
+      }
+      .settings-item-value {
+        display: flex;
+        justify-content: space-between;
+        width: 15rem;
+
+        flex-direction: row;
+      }
+      .settings-item-value__list {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .settings-item-value input {
+        padding-left: 0.5rem;
+      }
+      .settings-item-checkboxes {
+      	font-weight: bold;
+        cursor: pointer;
+      }
+    .container {
+      width: 32rem;
+      height: 23rem;
+      max-height: 23rem;
+      box-sizing: border-box;
+      font-weight: 300;
+      line-height: 1.5;
+      margin: 0 auto;
+      font-size: 112%;
+    }
+    .checkbox {
+      cursor: pointer;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .tabs .tab {
+      order: 99;
+      flex-grow: 1;
+      width: 100%;
+      display: none;
+      padding: 1rem;
+      background: #fff;
+
+    }
+    .tabs input[type="radio"] {
+      display: none;
+    }
+    .tabs input[type="radio"]:checked + label {
+      background: #fff;
+      font-weight: bold;
+    }
+    .tabs input[type="radio"]:checked + label + .tab {
+      display: block;
+    }
 
 
 </style>

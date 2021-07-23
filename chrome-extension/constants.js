@@ -11,7 +11,7 @@ const DEFULT_CONFIG = {
   isShowAlertTitle: true,  // if false, sends arguments to alert() function as is 
   customMethods: ["alert"], // adds additional custom methods to the console object
   redefinedMethods: ["log", "warn", "info", "error"], // list of console object methods to redefine
-  customGlobalFunctionName: 'a',   // if not empty, adds it as an alert() to the window object
+  customGlobalFunctions: ['p'],   // if not empty, adds it as an alert() to the window object
   preHook: ({methodName, args}) => {}, // function to be run before the alert()
   afterHook: ({methodName, args}) => {}, // function to be run after the alert()
 }

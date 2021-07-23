@@ -1,5 +1,5 @@
 import {DEFULT_CONFIG} from './constants.js';
-import {addToastContainer} from './toaster.js';
+import {initToaster} from './toaster.js';
 
 const originalConsoleObject = {
   log: console.log,
@@ -10,8 +10,8 @@ const originalConsoleObject = {
 
 const redefineConsoleMethods = (config) => {
 	if (config.isDisabled) {return null}
-  const toasts = addToastContainer();
-  
+  const Toaster = initToaster();
+
   config.customMethods.map((methodName) =>
     originalConsoleObject[methodName] = console[config.logMethod || 'warn']
   );
@@ -26,7 +26,7 @@ const redefineConsoleMethods = (config) => {
     window[config.alertMethod || "alert"](message);
  
   const showToast = ({message, methodName}) => {
-    toasts.add({
+    Toaster.add({
       message, methodName, 
       timeout: config.toastTimeout,
     });
@@ -80,9 +80,9 @@ const redefineConsoleMethods = (config) => {
     console[methodName] = (...args) => redefineConsoleMethod({args, methodName})
   )
 
-  if (!!config.customGlobalFunctionName) {
-    window[config.customGlobalFunctionName] = (...args) => redefineConsoleMethod({args})
-  }
+  config.customGlobalFunctions.map((methodName) =>
+    window[methodName] = (...args) => redefineConsoleMethod({args})
+  )
 }
 
 redefineConsoleMethods(DEFULT_CONFIG);
