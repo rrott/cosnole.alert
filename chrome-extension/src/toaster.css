@@ -1,17 +1,22 @@
 .console-alert-toasts {
   position: fixed;
   top: 0;
-  right: 2rem;
-  min-width: 35rem;
-  max-width: 35rem;
+  right: 32px;
+  min-width: 560px;
+  max-width: 560px;
   pointer-events: none;
   z-index: 100000;
+  font-size: 16px !important;
+  font-weight: normal !important;
+  font-family:  monospace;
+
 }
 
 .console-alert-toast {
-  padding:  1rem;
-  margin:  1rem;
-  border: 1px solid currentColor;
+  padding:  16px;
+  margin:  16px;
+  line-height: 20px;
+  /*border: 1px solid currentColor;*/
   position: relative;
   border-radius: 6px;
   display: flex;
@@ -36,8 +41,8 @@
 .console-alert-toast__copy {
   margin: 0!important;
   position: absolute;
-  top: 0.25rem;
-  right: 2rem;
+  top: 4px;
+  right: 36px;
   color: darkgray;
   cursor: pointer;
 }
@@ -45,42 +50,45 @@
 .console-alert-toast__close {
   margin: 0!important;
   position: absolute;
-  top: 0.25rem;
-  right: 0.5rem;
+  top: 4px;
+  right: 8px;
   color: orange;
   cursor: pointer;
 }
 
 .console-alert-toast__message {
-  white-space: pre-wrap; 
-  word-break: break-all;
+  white-space: pre-wrap !important; 
+  word-break: break-all !important;
   margin: 0!important;
-  font-size: 14px;
-  color: #777;
+  font-size: 16px !important;
+  border: none !important;
+  padding: 0 !important;
+  line-height: 20px !important;
+  background-color: transparent !important;
 }
 
 .console-alert-toasts_log {
   box-shadow: 0 1px 8px black;
-  background-color: whitesmoke;
-  color: #333333;
+  background-color: whitesmoke !important;
+  color: gray !important;
 }
 
 .console-alert-toasts_warn {
   box-shadow: 0 1px 8px orange;
-  background-color: whitesmoke;
-  color: #f2c94c;
+  background-color: whitesmoke !important;
+  color: gray !important;
 }
 
 .console-alert-toasts_error {
   box-shadow: 0 1px 8px red;
-  background-color: whitesmoke;
-  color: #eb5757;
+  background-color: whitesmoke !important;
+  color: gray !important;
 }
 
 .console-alert-toasts_info {
   box-shadow: 0 1px 8px green;
-  background-color: whitesmoke;
-  color: #6fcf97;
+  background-color: whitesmoke !important;
+  color: gray !important;
 }
 
 @keyframes FadeIn {

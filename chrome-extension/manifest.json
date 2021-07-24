@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "It extends browser's console object with additional loging functionality and he console.alert() function.",
   "short_name": "cosnole.alert",
-  "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

@@ -58,7 +58,9 @@ const redefineConsoleMethods = (config) => {
   const consoleAlert = ({args, methodName}) => {
     const isShowAlert = !config.alertTrigger || args[0] === config.alertTrigger;
     const method = methodName || config.logMethod;
-    methodName && originalConsoleObject[methodName](args);
+    methodName && 
+      originalConsoleObject[methodName] &&
+      originalConsoleObject[methodName](args);
 
     if (isShowAlert) {
       if (!config.isOnPause) {
