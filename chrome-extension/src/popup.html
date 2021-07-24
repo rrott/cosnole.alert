@@ -6,8 +6,9 @@
   </head>
   <body>
     <div class="buttons">
-      <span class="buttons__pause">[ pause ]</span>
-      <span class="buttons__disable">[disable]</span>
+      <span class="buttons__pause"   >[ pause ]</span>
+      <span class="buttons__disable" >[disable]</span>
+      <span class="buttons__close-toasts">[close toasts]</span>
     </div>
 
     <div class="container">
@@ -116,9 +117,10 @@
                 <input type="text" class="input" placeholder="0 to disable" />
               </span>
             </div>
-
-            <div class="line" ></div>
           </div>
+          <span class="footer-sign">
+            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
+          </span>
         </div>
         
         <input type="radio" name="tabs" id="advanced" />
@@ -180,12 +182,66 @@
                 </label>
               </span>
             </div>
-            <div class="line" ></div>
           </div>
+          <span class="footer-sign">
+            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
+          </span>
         </div>
 
-        <input type="radio" name="tabs" id="history" />
-        <label class="tabs-label" for="history">[logs]</label>
+        <input type="radio" name="tabs" id="lists" />
+        <label class="tabs-label" for="lists">[lists]</label>
+        <div class="tab">
+          <div class="settings">
+            <div class="line" ></div>
+
+            <div class="settings-item">
+              <span class="settings-item-checkboxes">
+                <label class="checkbox">
+                  <input type="checkbox" checked="checked" />
+                </label>
+                Use allow-list
+              </span>
+
+              <span class="settings-item-checkboxes">
+                <label class="checkbox">
+                  <input type="checkbox" />
+                </label>
+                Use block-list
+              </span>
+            </div>
+
+            <div class="settings-item">
+              <span class="settings-item-checkboxes">
+                allow-list
+                <label class="checkbox">
+                  <textarea 
+                    placeholder="urls to be used for. e.g.: http://localhost:8080"
+                    rows="5" cols="57" name="text"
+                  ></textarea>
+                </label>
+              </span>
+            </div>
+
+            <div class="settings-item">
+              <span class="settings-item-checkboxes">
+                block-list
+                <label class="checkbox">
+                  <textarea 
+                    disabled="disabled"
+                    placeholder="urls to be ignored. e.g.: http://127.0.0.1:8080"
+                    rows="5" cols="57" name="text"
+                  ></textarea>
+                </label>
+              </span>
+            </div>
+          </div>
+          <span class="footer-sign">
+            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
+          </span>
+        </div>
+
+        <input type="radio" name="tabs" id="logs" />
+        <label class="tabs-label" for="logs">[logs]</label>
         <div class="tab">
           <div class="settings">
             <div class="line" ></div>
@@ -193,6 +249,9 @@
               console.log() calls log. TBD
             </pre>
           </div>
+          <span class="footer-sign">
+            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
+          </span>
         </div>
 
         <input type="radio" name="tabs" id="about" />
@@ -209,8 +268,7 @@
             <li>etc.. (See documentation)</li>
           </ul>
           <br />
-          <div class="line" ></div>
-          <span>
+          <span class="about-sign">
             <strong>author:</strong> <a href='https://rrott.com'>rrott</a> <br />
             <strong>source code:</strong> <a href='https://github.com/rrott/cosnole.alert'>github.com/rrott/cosnole.alert</a> <br />
             <strong>documentation:</strong> <a href='https://rrott.com/cosnole.alert'>https://rrott.com/cosnole.alert</a> <br />
@@ -219,6 +277,7 @@
       </div>
     </div>
 
+    <div class="bottom-line" ></div>
     <svg width="64px" height="64px" viewBox="0 0 126 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
         <path stroke="#000000" stroke-width="2" d="M63,20.9983616 L124.267002,127 L1.73299801,127 L63,20.9983616 Z"></path>
@@ -241,6 +300,31 @@
       height: 1rem;
       margin-bottom: 0.5rem;
       border-bottom: 1px solid lightgray;
+    }
+    .bottom-line {
+      height: 1rem;
+      width: 30rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid lightgray;
+      position: fixed;
+      bottom: 4.5rem;
+      left: 1.5rem;
+    }
+    .footer-sign {
+      position: fixed;
+      bottom: 1rem;
+      left: 1.5rem;
+    }
+    .footer-sign a {
+      color: darkgray;
+      font-family: monospace;
+      font-size: 18px;
+      text-decoration: none;
+    }
+    .about-sign {
+      position: fixed;
+      bottom: 1rem;
+      left: 1.5rem;
     }
     .checkbox {
       cursor: pointer;
@@ -282,13 +366,20 @@
       cursor: pointer;
       color: darkgray;
     }
-     .buttons__disable:hover {
+    .buttons__disable:hover {
       color: red;
     }
     .buttons__disable__active {
       cursor: pointer;
       font-weight: bold;
-      color: red;
+      color: orange;
+    }
+    .buttons__close-toasts {
+      cursor: pointer;
+      color: darkgray;
+    }
+     .buttons__close-toasts:hover {
+      color: orange;
     }
     .tabs-label {
       margin: 0 !important;

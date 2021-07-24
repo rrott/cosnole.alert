@@ -1,10 +1,10 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "cosnole.alert",
   "version": "0.1.0",
-  "description": "It extends browser's console object with additional loging functionality and he console.alert() function.",
+  "description": "It extends browser's console object with additional loging functionality and adds console.alert() function.",
   "short_name": "cosnole.alert",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "scripting"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -13,16 +13,19 @@
       "css": ["src/toaster.css"]
     }
   ],
-  "browser_action": {
+  "action": {
      "default_icon": "cosnole.png",
      "default_popup": "src/popup.html"
   },
-  "background": {
-    "scripts": ["src/background.js"]
-  },
-  "web_accessible_resources": [
-  	"src/consoleReplacer.js",
-    "src/constants.js",
-    "src/toaster.js"
-  ]
+  // "background": {
+  //   "service_worker": "src/background.js"
+  // },
+  "web_accessible_resources": [{
+    "resources": [
+      "src/consoleReplacer.js",
+      "src/constants.js",
+      "src/toaster.js"
+    ],
+    "matches": ["<all_urls>"]
+  }]
 }
