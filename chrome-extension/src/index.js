@@ -2,7 +2,7 @@ const embedScript = () => {
   const isRemoveFromDom = false;
   const scriptTag = document.createElement('script');
   scriptTag.setAttribute("type", "module");
-  scriptTag.src = chrome.extension.getURL('consoleReplacer.js');
+  scriptTag.src = chrome.extension.getURL('src/consoleReplacer.js');
 
   if (isRemoveFromDom) {
     scriptTag.addEventListener('load', () =>
