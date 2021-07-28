@@ -1,29 +1,52 @@
 {
   "manifest_version": 3,
   "name": "cosnole.alert",
-  "version": "0.1.0",
-  "description": "It extends browser's console object with additional loging functionality and adds console.alert() function.",
+  "version": "0.2.0",
+  "author": "Roman Rott",
+  "description": "Extends browser's console object with the alert() function. Shows console logs/errors/warnings in a toast notification format to help you catch bugs faster.",
   "short_name": "cosnole.alert",
-  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "permissions": ["storage","activeTab", "scripting"],
+  // "content_security_policy": "default-src 'self'",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "run_at": "document_start",
+      "all_frames": true,
       "js": ["src/index.js"],
       "css": ["src/toaster.css"]
     }
   ],
-  "action": {
-     "default_icon": "cosnole.png",
-     "default_popup": "src/popup.html"
+  "icons": {
+    "16": "/icons/cosnole-16.png",
+    "32": "/icons/cosnole-32.png",
+    "48": "/icons/cosnole-48.png",
+    "64": "/icons/cosnole-64.png",
+    "128": "/icons/cosnole-128.png",
+    "256": "/icons/cosnole-256.png"
   },
-  // "background": {
-  //   "service_worker": "src/background.js"
-  // },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "/icons/cosnole-16.png",
+      "32": "/icons/cosnole-32.png",
+      "48": "/icons/cosnole-48.png",
+      "64": "/icons/cosnole-64.png",
+      "128": "/icons/cosnole-128.png",
+      "256": "/icons/cosnole-256.png"
+    }
+  },
+  "storage": {
+    "managed_schema": "src/schema.json"
+  },
+  "options_page": "src/options.html",
+  "background": {
+    "service_worker": "background-wrapper.js"
+  },
   "web_accessible_resources": [{
     "resources": [
-      "src/consoleReplacer.js",
-      "src/constants.js",
+      "src/consoleEnhancer.js",
+      "src/consoleLogger.js",
       "src/toaster.js"
     ],
     "matches": ["<all_urls>"]

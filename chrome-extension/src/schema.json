@@ -1,0 +1,97 @@
+{
+	"type": "object",
+	"properties": {
+		"alertTimeout": {
+      "type": "integer"
+    },
+    "alertTrigger": {
+      "type": "string",
+      "description": "custom 'stop-word' that triggers the alert"
+    },
+    "alertMethod": {
+      "type": "string",
+      "description": "'alert', 'promt' or 'confirm'"
+    },
+    "logMethod": {
+      "type": "string",
+      "description": "'log', 'warn', 'info' or 'error'"
+    },
+    "showToast": {
+      "type": "string",
+      "description": "'all', 'none', 'redefined', 'custom' - shows small toast message in the right top corner"
+    },
+    "toastTimeout": {
+      "type": "integer",
+      "description": "auto-hide toasts"
+    },
+    "isOnPause": {
+      "type": "boolean",
+      "description": "if true, console object is redefined but no alerts are triggered"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "description": "if true, console object left as is"
+    },
+    "isStringifyInput": {
+      "type": "boolean",
+      "description": "if true, converts arguments to text"
+    },
+    "isShowAlertTitle": {
+      "type": "boolean",
+      "description": "if false, sends arguments to alert() function as is "
+    },
+
+    "customMethods": {
+      "description": "adds additional custom methods to the console object",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "redefinedMethods": {
+      "description": "list of console object methods to redefine",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "customGlobalFunctions": {
+      "description": "if not empty, adds it as an alert() to the window object",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preHook": {
+      "type": "string",
+      "description": "if not empty, adds it as an alert() to the window object"
+    },
+    "afterHook": {
+      "type": "string",
+      "description": "function to be run before the alert()"
+    },
+    "isUseAllowList": {
+      "type": "boolean",
+      "description": ""
+    },
+    "isUseBlockList": {
+      "type": "boolean",
+      "description": ""
+    },
+    "allowList": {
+      "description": "",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockList": {
+      "description": "",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+  }
+
+}

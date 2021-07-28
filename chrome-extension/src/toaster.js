@@ -1,11 +1,9 @@
-const Toaster = {
-  toasts: {},
-  add: () => {},
-};
-
 const initToaster = () => {
   let toastIndex = 0;
-
+  const Toaster = {
+    toasts: {},
+    add: () => {},
+  };
   if (document.readyState !== 'complete') {
     window.addEventListener("DOMContentLoaded", initToaster);
   }

@@ -11,32 +11,6 @@
       <span class="buttons__close-toasts">[close toasts]</span>
     </div>
 
-    <div class="header" >
-      <span class="mode-redio">
-        <label class="checkbox">
-          <input type="radio" checked="checked" />
-        </label>
-        Enhanced Mode
-      </span>
-
-      <span class="mode-redio">
-        <label class="checkbox">
-          <input type="radio"  />
-        </label>
-        Toasts-only Mode
-      </span>
-
-      <span class="mode-redio">
-        <label class="checkbox">
-          <input type="radio"  />
-        </label>
-        Simple Mode
-      </span>
-
-      <div class="header-line" ></div>
-    </div>
-
-
     <div class="container">
       <div class="tabs">
         <input type="radio" name="tabs" id="options" checked="checked" />
@@ -44,15 +18,11 @@
 
         <div class="tab">
           <div class="settings">
+            <div class="line" ></div>
             <div class="settings-item">
               <span class="settings-item-title">Redefined console Methods:</span>
               <span class="settings-item-value">
                 <div class="settings-item-value__list">
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>table
-                  </label>
-
                   <label class="checkbox">
                     <input type="checkbox" checked="checked" />
                     <span class="checkmark"></span>error
@@ -157,6 +127,7 @@
         <label class="tabs-label" for="advanced">[advanced]</label>
         <div class="tab">
           <div class="settings">
+            <div class="line" ></div>
 
             <div class="settings-item">
               <span class="settings-item-title">Trigger to call alert():</span>
@@ -221,6 +192,7 @@
         <label class="tabs-label" for="lists">[lists]</label>
         <div class="tab">
           <div class="settings">
+            <div class="line" ></div>
 
             <div class="settings-item">
               <span class="settings-item-checkboxes">
@@ -243,7 +215,7 @@
                 allow-list
                 <label class="checkbox">
                   <textarea 
-                    placeholder="e.g.: http://localhost:8080"
+                    placeholder="urls to be used for. e.g.: http://localhost:8080"
                     rows="5" cols="57" name="text"
                   ></textarea>
                 </label>
@@ -256,7 +228,7 @@
                 <label class="checkbox">
                   <textarea 
                     disabled="disabled"
-                    placeholder="e.g.: http://127.0.0.1:8080"
+                    placeholder="urls to be ignored. e.g.: http://127.0.0.1:8080"
                     rows="5" cols="57" name="text"
                   ></textarea>
                 </label>
@@ -272,6 +244,7 @@
         <label class="tabs-label" for="logs">[logs]</label>
         <div class="tab">
           <div class="settings">
+            <div class="line" ></div>
             <pre>
               console.log() calls log. TBD
             </pre>
@@ -304,7 +277,7 @@
       </div>
     </div>
 
-    <div class="footer-line" ></div>
+    <div class="bottom-line" ></div>
     <svg width="64px" height="64px" viewBox="0 0 126 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
         <path stroke="#000000" stroke-width="2" d="M63,20.9983616 L124.267002,127 L1.73299801,127 L63,20.9983616 Z"></path>
@@ -314,7 +287,7 @@
 
   <style>
     .container {
-      width: 34rem;
+      width: 32rem;
       height: 25rem;
       max-height: 25rem;
       box-sizing: border-box;
@@ -328,31 +301,15 @@
       margin-bottom: 0.5rem;
       border-bottom: 1px solid lightgray;
     }
-    .header {
-      position: fixed;
-      top: 2.5rem;
-      left: 1.5rem;
-    }
-    .header-line {
+    .bottom-line {
       height: 1rem;
-      width: 33rem;
-      margin-top: 0.5rem;
-      border-bottom: 1px solid lightgray;
-      position: fixed;
-      top: 2.5rem;
-      left: 1rem;
-    }
-
-    .footer-line {
-      height: 1rem;
-      width: 33rem;
+      width: 30rem;
       margin-bottom: 0.5rem;
       border-bottom: 1px solid lightgray;
       position: fixed;
       bottom: 4.5rem;
-      left: 1rem;
+      left: 1.5rem;
     }
-
     .footer-sign {
       position: fixed;
       bottom: 1rem;
@@ -384,7 +341,7 @@
       position: absolute;
       cursor: pointer;
       top: 0;
-      right: 0.5rem;
+      right: 0;
       width: 7rem;
       height: 2rem;
       display: flex;
@@ -454,7 +411,7 @@
     .settings-item-value {
       display: flex;
       justify-content: space-between;
-      width: 17rem;
+      width: 15rem;
       flex-direction: row;
     }
     .settings-item-value__list {
@@ -472,16 +429,13 @@
     .tabs {
       display: flex;
       flex-wrap: wrap;
-
     }
     .tabs .tab {
       order: 99;
       flex-grow: 1;
       width: 100%;
       display: none;
-      padding: 0.5rem;
-      padding-top: 2.5rem;
-
+      padding: 1rem;
       background: #fff;
     }
     .tabs input[type="radio"] {
