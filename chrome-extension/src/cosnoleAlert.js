@@ -7,77 +7,88 @@ const consnoleAlert =  (encodedConfig) => {
 
   const Toaster = initToaster();
   const originalConsoleObject = {
-    log:   console.log,
-    warn:  console.warn,
-    info:  console.info,
+    log: console.log,
+    warn: console.warn,
+    info: console.info,
     error: console.error,
     table: console.table,
-  }
+  };
 
-  // add custom methods to originalConsoleObject. link them to console.warn()
   window.cosnoleAlertConfig?.customMethods.map((methodName) =>
-    originalConsoleObject[methodName] = console[window.cosnoleAlertConfig?.logMethod || DEFAULT_LOG_METHOD]
+    originalConsoleObject[methodName] = console[
+      window.cosnoleAlertConfig?.logMethod || DEFAULT_LOG_METHOD
+    ]
   );
 
-  const formatMessage = ({methodName, args}) => {
+  const formatAlertMessage = ({methodName, args}) => {
     window.cosnoleAlertConfig?.alertTrigger && args.shift();
-  	const message = window.cosnoleAlertConfig?.isStringifyInput ? JSON.stringify(args) : args;
-    return  window.cosnoleAlertConfig?.isShowAlertTitle 
-            ? `console.${methodName} message:\n${message}`
-            : message;
+    return `console.${methodName} message:\n${args}`;
   }
 
-  const showAlert = ({message}) => 
+  const formatToastMessage = ({methodName, args}) => {
+    const nonObjectTypes = ['number', "bigint", 'string', 'boolean', 'undefined'];
+    window.cosnoleAlertConfig?.alertTrigger && args.shift();
+    const messages = args.map( (arg) => {
+      const msg = {text: `${arg}`, origin: JSON.stringify(arg)};
+      msg.type = nonObjectTypes.includes(typeof(arg)) ? "text" : "object";
+      return msg;
+    })
+    return {title: `console.${methodName} message:`, messages}
+  }
+
+  const showAlert = ({methodName, args}) => {
+    const message = formatAlertMessage({methodName, args});
     window[window.cosnoleAlertConfig?.alertMethod || DEFAULT_ALERT_METHOD](message);
+  }
  
-  const showToast = ({methodName, message}) =>
+  const showToast = ({methodName, args}) => {
+    const message = formatToastMessage({methodName, args});
     Toaster.add({
       message, methodName, 
       timeout: window.cosnoleAlertConfig?.toastHideTimeout,
     });
+  }
 
-  const showMessage = ({methodName, message}) => {
+  const showMessage = ({methodName, args}) => {
     const isCustom = window.cosnoleAlertConfig?.customMethods.includes(methodName);
     const isRedefined = window.cosnoleAlertConfig?.redefinedMethods.includes(methodName);
     
     switch (window.cosnoleAlertConfig?.showToastsFor) {
       case "all":
-        showToast({methodName, message});
+        showToast({methodName, args});
         break;
       case "redefined":
-        isRedefined && showToast({methodName, message}) 
+        isRedefined && showToast({methodName, args}) 
         break;
       case "custom":
-        isCustom && showToast({methodName, message});
+        isCustom && showToast({methodName, args});
         break;
     }
     switch (window.cosnoleAlertConfig?.showAlertsFor) {
       case "all":
-        showAlert({methodName, message});
+        showAlert({methodName, args});
         break;
       case "redefined":
-        isRedefined && showAlert({message, methodName}) 
+        isRedefined && showAlert({methodName, args}) 
         break;
       case "custom":
-        isCustom && showAlert({message, methodName});
+        isCustom && showAlert({methodName, args});
         break;
     }
   }
 
   const customConsoleAlert = ({methodName, args}) => {
     const isShowAlert = !window.cosnoleAlertConfig?.alertTrigger || args[0] === window.cosnoleAlertConfig?.alertTrigger;
-
+    const isRunPreHook = typeof window.cosnoleAlertConfig?.preHook == 'function';
+    const isRunAfterHook = typeof window.cosnoleAlertConfig?.afterHook == 'function';
     originalConsoleObject[methodName] && 
       originalConsoleObject[methodName](...args);
 
     if (isShowAlert) {
       if (!window.cosnoleAlertConfig?.isOnPause) {
-      	typeof window.cosnoleAlertConfig?.preHook == 'function' && window.cosnoleAlertConfig?.preHook({methodName, args});
-        showMessage({
-          methodName: methodName || window.cosnoleAlertConfig?.logMethod,
-          message: formatMessage({methodName, args})
-        })
-      	typeof window.cosnoleAlertConfig?.afterHook == 'function' &&  window.cosnoleAlertConfig?.afterHook({methodName, args});
+      	isRunPreHook && window.cosnoleAlertConfig?.preHook({methodName, args});
+        showMessage({methodName: methodName || window.cosnoleAlertConfig?.logMethod, args});
+      	isRunAfterHook &&  window.cosnoleAlertConfig?.afterHook({methodName, args});
       }
     }
   }

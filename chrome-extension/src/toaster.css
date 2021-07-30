@@ -68,6 +68,36 @@
   background-color: transparent !important;
 }
 
+.cosnole-alert-toast__message__title {
+  font-weight: bolder;
+}
+
+.cosnole-alert-toast__message__object-title {
+  cursor: pointer;
+}
+
+.cosnole-alert-toast__message__object-title:hover {
+  background-color: lightgrey;
+}
+
+.cosnole-alert-toast__message__object {
+  display:  none;
+}
+
+.cosnole-alert-toast__message__object_expanded {
+  display: flex;
+  padding: 4px;
+  border: 1px solid darkgray;
+  background-color: lightgrey !important;
+  white-space: pre-wrap !important; 
+  word-break: break-all !important;
+  margin: 0!important;
+  font-size: 12px !important;
+  border: none !important;
+  padding: 0 !important;
+  line-height: 16px !important;
+}
+
 .cosnole-alert-toasts_log {
   box-shadow: 0 1px 8px black;
   background-color: whitesmoke !important;
