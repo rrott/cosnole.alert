@@ -9,8 +9,8 @@ const initToaster = () => {
   }
 
   const toastContainer = document.createElement('div');
-  toastContainer.className = 'console-alert-toasts';
-  toastContainer.classList.add('console-alert-toasts_top-right');
+  toastContainer.className = 'cosnole-alert-toasts';
+  toastContainer.classList.add('cosnole-alert-toasts_top-right');
   (document.body || document.documentElement).appendChild(toastContainer);
 
   Toaster.add = ({message, methodName, timeout}) => {
@@ -19,13 +19,13 @@ const initToaster = () => {
     const copyButton = document.createElement('span');
     const toast = document.createElement('div');
 
-    messageContainer.className = 'console-alert-toast__message';
+    messageContainer.className = 'cosnole-alert-toast__message';
     messageContainer.innerHTML = message;
 
-    closeButton.className = 'console-alert-toast__close';
+    closeButton.className = 'cosnole-alert-toast__close';
     closeButton.innerHTML = '[x]';
 
-    copyButton.className = 'console-alert-toast__copy';
+    copyButton.className = 'cosnole-alert-toast__copy';
     copyButton.innerHTML = '[copy]';
     copyButton.onclick = () => {
       const textarea = document.createElement('textarea');
@@ -36,8 +36,8 @@ const initToaster = () => {
       toast.removeChild(textarea);
     }
 
-    toast.className = 'console-alert-toast';
-    toast.classList.add(`console-alert-toasts_${methodName}`);
+    toast.className = 'cosnole-alert-toast';
+    toast.classList.add(`cosnole-alert-toasts_${methodName}`);
     toast.id = `toast-${++toastIndex}`;
     
     toast.appendChild(copyButton);
@@ -45,16 +45,16 @@ const initToaster = () => {
     toast.appendChild(messageContainer);
 
     toast.hide = () => {
-      toast.classList.add('console-alert-toasts_fade-out');
+      toast.classList.add('cosnole-alert-toasts_fade-out');
       toast.addEventListener('animationend', removeToast, false);
     };
     toast.addEventListener('click', toast.hide);
       
     const removeToast = () => {
-      document.getElementsByClassName('console-alert-toasts')[0].removeChild(toast);
+      document.getElementsByClassName('cosnole-alert-toasts')[0].removeChild(toast);
       delete Toaster.toasts[toast.id];
     }      
-    document.getElementsByClassName('console-alert-toasts')[0].appendChild(toast);
+    document.getElementsByClassName('cosnole-alert-toasts')[0].appendChild(toast);
     
     if (timeout) {setTimeout(toast?.hide, timeout)}
     

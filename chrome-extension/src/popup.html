@@ -30,7 +30,7 @@
         <label class="checkbox">
           <input type="radio"  />
         </label>
-        Simple Mode
+        Simple Alert Mode
       </span>
 
       <div class="header-line" ></div>
@@ -102,22 +102,17 @@
             <div class="line" ></div>
 
             <div class="settings-item">
-              <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                </label>
-                Stringify Output
-              </span>
-
-              <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                </label>
-                Show Alert Title
+              <span class="settings-item-title">Show Alerts For:</span>
+              <span class="settings-item-value">
+                <div></div>
+                <select class="select" size="1" name="showToast">
+                  <option value="all" selected>All</option>
+                  <option value="redefined">Redefined Methods</option>
+                  <option value="custom">Custom Methods</option>
+                  <option value="none">None</option>
+                </select>
               </span>
             </div>
-
-            <div class="line" ></div>
 
             <div class="settings-item">
               <span class="settings-item-title">Show Toasts For:</span>

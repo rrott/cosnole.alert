@@ -1,22 +1,23 @@
-.console-alert-toasts {
+.cosnole-alert-toasts {
+  all: revert;
   position: fixed;
-  top: 0;
+  top: 12px;
   right: 32px;
-  min-width: 560px;
-  max-width: 560px;
+  min-width: 400px;
+  max-width: 400px;
   pointer-events: none;
   z-index: 100000;
-  font-size: 16px !important;
+  font-size: 12px !important;
   font-weight: normal !important;
   font-family:  monospace;
-
+  /*overflow-y: clip;*/
+  /*height: calc(100vh - 60px);*/
 }
 
-.console-alert-toast {
-  padding:  16px;
-  margin:  16px;
-  line-height: 20px;
-  /*border: 1px solid currentColor;*/
+.cosnole-alert-toast {
+  padding:  10px;
+  margin:  10px;
+  line-height: 14px;
   position: relative;
   border-radius: 6px;
   display: flex;
@@ -31,14 +32,14 @@
   pointer-events: all;
 }
 
-.console-alert-toasts_fade-out {
+.cosnole-alert-toasts_fade-out {
   animation-name: FadeOut;
   animation-duration: .3s;
   animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   animation-fill-mode: forwards;
 }
 
-.console-alert-toast__copy {
+.cosnole-alert-toast__copy {
   margin: 0!important;
   position: absolute;
   top: 4px;
@@ -47,7 +48,7 @@
   cursor: pointer;
 }
 
-.console-alert-toast__close {
+.cosnole-alert-toast__close {
   margin: 0!important;
   position: absolute;
   top: 4px;
@@ -56,36 +57,36 @@
   cursor: pointer;
 }
 
-.console-alert-toast__message {
+.cosnole-alert-toast__message {
   white-space: pre-wrap !important; 
   word-break: break-all !important;
   margin: 0!important;
-  font-size: 16px !important;
+  font-size: 12px !important;
   border: none !important;
   padding: 0 !important;
-  line-height: 20px !important;
+  line-height: 16px !important;
   background-color: transparent !important;
 }
 
-.console-alert-toasts_log {
+.cosnole-alert-toasts_log {
   box-shadow: 0 1px 8px black;
   background-color: whitesmoke !important;
   color: gray !important;
 }
 
-.console-alert-toasts_warn {
+.cosnole-alert-toasts_warn {
   box-shadow: 0 1px 8px orange;
   background-color: whitesmoke !important;
   color: gray !important;
 }
 
-.console-alert-toasts_error {
+.cosnole-alert-toasts_error {
   box-shadow: 0 1px 8px red;
   background-color: whitesmoke !important;
   color: gray !important;
 }
 
-.console-alert-toasts_info {
+.cosnole-alert-toasts_info {
   box-shadow: 0 1px 8px green;
   background-color: whitesmoke !important;
   color: gray !important;

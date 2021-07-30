@@ -40,7 +40,6 @@
       "type": "boolean",
       "description": "if false, sends arguments to alert() function as is "
     },
-
     "customMethods": {
       "description": "adds additional custom methods to the console object",
       "type": "array",

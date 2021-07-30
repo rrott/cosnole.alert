@@ -45,8 +45,8 @@
   },
   "web_accessible_resources": [{
     "resources": [
-      "src/consoleEnhancer.js",
-      "src/consoleLogger.js",
+      "src/cosnoleAlert.js",
+      "src/constants.js",
       "src/toaster.js"
     ],
     "matches": ["<all_urls>"]
