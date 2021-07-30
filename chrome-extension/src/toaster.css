@@ -15,11 +15,13 @@
 }
 
 .cosnole-alert-toast {
+  all: revert;
+  opacity: 0.95;
   padding:  10px;
   margin:  10px;
   line-height: 14px;
   position: relative;
-  border-radius: 6px;
+  /*border-radius: 6px;*/
   display: flex;
   align-items: center;
   width: 100%;
@@ -58,6 +60,7 @@
 }
 
 .cosnole-alert-toast__message {
+  all: revert;
   white-space: pre-wrap !important; 
   word-break: break-all !important;
   margin: 0!important;
@@ -68,58 +71,112 @@
   background-color: transparent !important;
 }
 
+.cosnole-alert-toast__message__body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .cosnole-alert-toast__message__title {
+  all: revert;
   font-weight: bolder;
+  padding: 0 !important;
 }
 
 .cosnole-alert-toast__message__object-title {
+  all: revert;
   cursor: pointer;
+  padding: 0 !important;
 }
 
 .cosnole-alert-toast__message__object-title:hover {
+  all: revert;
+  cursor: pointer;
   background-color: lightgrey;
+  padding: 0 !important;
+}
+
+.cosnole-alert-toast__message__object-title::before {
+  content: "▶";
+}
+
+.cosnole-alert-toast__message__object-title_expanded {
+  all: revert;
+  cursor: pointer;
+  padding: 0 !important;
+  width: -webkit-fill-available;
+}
+
+.cosnole-alert-toast__message__object-title_expanded::before {
+  content: "▼";
 }
 
 .cosnole-alert-toast__message__object {
+  all: revert;
   display:  none;
+  padding: 0 !important;
 }
 
 .cosnole-alert-toast__message__object_expanded {
+  all: revert;
   display: flex;
   padding: 4px;
-  border: 1px solid darkgray;
-  background-color: lightgrey !important;
+  margin-left:  10px;
+  border: 1px solid lightgrey;
+  /*background-color: lightgrey !important;*/
   white-space: pre-wrap !important; 
   word-break: break-all !important;
-  margin: 0!important;
   font-size: 12px !important;
-  border: none !important;
-  padding: 0 !important;
   line-height: 16px !important;
 }
 
 .cosnole-alert-toasts_log {
-  box-shadow: 0 1px 8px black;
+  box-shadow: 0 1px 8px black !important;;
   background-color: whitesmoke !important;
   color: gray !important;
+}
+
+.cosnole-alert-toasts_log .cosnole-alert-toast__message__title {
+  color: black !important;
 }
 
 .cosnole-alert-toasts_warn {
-  box-shadow: 0 1px 8px orange;
+  box-shadow: 0 1px 8px orange !important;;
   background-color: whitesmoke !important;
   color: gray !important;
+}
+
+.cosnole-alert-toasts_warn .cosnole-alert-toast__message__title {
+  color: orange !important;
 }
 
 .cosnole-alert-toasts_error {
-  box-shadow: 0 1px 8px red;
+  box-shadow: 0 1px 8px red !important;;
   background-color: whitesmoke !important;
   color: gray !important;
 }
 
+.cosnole-alert-toasts_error .cosnole-alert-toast__message__title {
+  color: red !important;
+}
+
 .cosnole-alert-toasts_info {
-  box-shadow: 0 1px 8px green;
+  box-shadow: 0 1px 8px green !important;;
   background-color: whitesmoke !important;
   color: gray !important;
+}
+
+.cosnole-alert-toasts_info .cosnole-alert-toast__message__title {
+  color: green !important;
+}
+
+.cosnole-alert-toast {
+  box-shadow: 0 1px 8px green;
+  background-color: whitesmoke !important;
+  color: gray;
+}
+
+.cosnole-alert-toast .cosnole-alert-toast__message__title {
+  color: green;
 }
 
 @keyframes FadeIn {

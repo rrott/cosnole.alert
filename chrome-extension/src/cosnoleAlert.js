@@ -28,12 +28,15 @@ const consnoleAlert =  (encodedConfig) => {
   const formatToastMessage = ({methodName, args}) => {
     const nonObjectTypes = ['number', "bigint", 'string', 'boolean', 'undefined'];
     window.cosnoleAlertConfig?.alertTrigger && args.shift();
-    const messages = args.map( (arg) => {
-      const msg = {text: `${arg}`, origin: JSON.stringify(arg)};
-      msg.type = nonObjectTypes.includes(typeof(arg)) ? "text" : "object";
-      return msg;
+    const messages = args.map((arg) => {
+      return {
+        arg, 
+        type: typeof arg,
+        parsed: JSON.stringify(arg),
+        isNonObject: nonObjectTypes.includes(typeof arg),
+      }
     })
-    return {title: `console.${methodName} message:`, messages}
+    return {title: `console.${methodName}`, messages}
   }
 
   const showAlert = ({methodName, args}) => {
@@ -79,8 +82,8 @@ const consnoleAlert =  (encodedConfig) => {
 
   const customConsoleAlert = ({methodName, args}) => {
     const isShowAlert = !window.cosnoleAlertConfig?.alertTrigger || args[0] === window.cosnoleAlertConfig?.alertTrigger;
-    const isRunPreHook = typeof window.cosnoleAlertConfig?.preHook == 'function';
-    const isRunAfterHook = typeof window.cosnoleAlertConfig?.afterHook == 'function';
+    const isRunPreHook = typeof window.cosnoleAlertConfig?.preHook === 'function';
+    const isRunAfterHook = typeof window.cosnoleAlertConfig?.afterHook === 'function';
     originalConsoleObject[methodName] && 
       originalConsoleObject[methodName](...args);
 
