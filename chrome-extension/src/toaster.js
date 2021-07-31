@@ -21,6 +21,16 @@ const initToaster = () => {
     const copyButton = document.createElement('span');
     const toast = document.createElement('div');
 
+    const removeToast = () => {
+      document.getElementsByClassName('cosnole-alert-toasts')[0].removeChild(toast);
+      delete Toaster.toasts[toast.id];
+    }  
+
+    toast.hide = () => {
+      toast.classList.add('cosnole-alert-toasts_fade-out');
+      toast.addEventListener('animationend', removeToast, false);
+    };
+
     messageContainer.className = 'cosnole-alert-toast__message';
     messageTitleContainer.className = 'cosnole-alert-toast__message__title';
     messageBodyContainer.className = 'cosnole-alert-toast__message__body';
@@ -82,7 +92,6 @@ const initToaster = () => {
     }
 
     toast.className = 'cosnole-alert-toast';
-    // toast.classList.add('cosnole-alert-toasts');
     toast.classList.add(`cosnole-alert-toasts_${methodName}`);
     toast.id = `toast-${++toastIndex}`;
     
@@ -90,15 +99,8 @@ const initToaster = () => {
     toast.appendChild(closeButton);
     toast.appendChild(messageContainer);
 
-    toast.hide = () => {
-      toast.classList.add('cosnole-alert-toasts_fade-out');
-      toast.addEventListener('animationend', removeToast, false);
-    };
-      
-    const removeToast = () => {
-      document.getElementsByClassName('cosnole-alert-toasts')[0].removeChild(toast);
-      delete Toaster.toasts[toast.id];
-    }      
+
+    
     document.getElementsByClassName('cosnole-alert-toasts')[0].appendChild(toast);
     
     if (timeout) {setTimeout(toast?.hide, timeout)}
