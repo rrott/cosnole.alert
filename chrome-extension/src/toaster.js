@@ -4,9 +4,6 @@ const initToaster = () => {
     toasts: {},
     add: () => {},
   };
-  if (document.readyState !== 'complete') {
-    window.addEventListener("DOMContentLoaded", initToaster);
-  }
 
   const toastContainer = document.createElement('div');
   toastContainer.className = 'cosnole-alert-toasts';
@@ -91,15 +88,12 @@ const initToaster = () => {
       toast.removeChild(textarea);
     }
 
+    toast.id = `toast-${++toastIndex}`;
     toast.className = 'cosnole-alert-toast';
     toast.classList.add(`cosnole-alert-toasts_${methodName}`);
-    toast.id = `toast-${++toastIndex}`;
-    
     toast.appendChild(copyButton);
     toast.appendChild(closeButton);
     toast.appendChild(messageContainer);
-
-
     
     document.getElementsByClassName('cosnole-alert-toasts')[0].appendChild(toast);
     

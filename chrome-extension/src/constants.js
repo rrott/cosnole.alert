@@ -1,4 +1,0 @@
-const DEFAULT_LOG_METHOD = 'warn';
-const DEFAULT_ALERT_METHOD = 'alert';
-  
-export {DEFAULT_LOG_METHOD, DEFAULT_ALERT_METHOD};
