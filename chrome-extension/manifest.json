@@ -6,8 +6,10 @@
   "description": "Extends browser's console object with the alert() function. Shows console logs/errors/warnings as toast messages to help you catch bugs faster.",
   "short_name": "cosnole.alert",
   "host_permissions": ["<all_urls>"],
-  "permissions": ["storage","activeTab", "scripting"],
-  // "content_security_policy": "default-src 'self'",
+  "permissions": ["storage", "activeTab", "scripting"],
+  // "content_security_policy": {
+  //   "extension_pages": "default-src 'self'"
+  // },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -45,9 +47,10 @@
   },
   "web_accessible_resources": [{
     "resources": [
-      "src/cosnoleAlert.js",
+      "src/cosnoleSimpleAlert.js",
       "src/cosnoleToast.js",
-      "src/cosnoleToastAlert.js",
+      "src/cosnoleAlert.js",
+      "src/config.js",
       "src/toaster.js"
     ],
     "matches": ["<all_urls>"]

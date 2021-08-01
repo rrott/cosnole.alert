@@ -1,3 +1,5 @@
+import {Config} from 'src/config.js';
+
 const DEFULT_CONFIG = {
   alertTimeout: 0,
   alertTrigger: "",        // custom "stop-word" that triggers the alert

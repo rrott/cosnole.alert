@@ -1,4 +1,5 @@
 const embedScript = () => {
+
   const DEFULT_CONFIG = {
     mode: "default",          // ["default", "toasts", "simple"]
     isOnPause: false,         // if true, console object is redefined but no alerts are triggered
@@ -24,12 +25,12 @@ const embedScript = () => {
   const scriptTag = document.createElement('script');
 
   if (config.mode === "default") {
-    scriptTag.src = chrome.runtime.getURL('src/cosnoleToastAlert.js');
+    scriptTag.src = chrome.runtime.getURL('src/cosnoleAlert.js');
     scriptTag.setAttribute("onLoad", `window.cosnoleAlert('${encodedCongig}');`);
     scriptTag.setAttribute("type", "module");
   }
   if (config.mode === "simple") { 
-    scriptTag.src = chrome.runtime.getURL('src/cosnoleAlert.js');    
+    scriptTag.src = chrome.runtime.getURL('src/cosnoleSimpleAlert.js');    
   }
   (document.head || document.documentElement).appendChild(scriptTag);
 }

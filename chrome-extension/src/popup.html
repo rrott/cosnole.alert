@@ -2,36 +2,17 @@
 <html>
   <head>
     <title>cosnole.alert()</title>
-    <script src="src/popup.js"></script>
+    <script src="./popup.js" type="module"></script>
   </head>
   <body>
     <div class="buttons">
-      <span class="buttons__pause"   >[ pause ]</span>
-      <span class="buttons__disable" >[disable]</span>
-      <span class="buttons__close-toasts">[close toasts]</span>
+      <span class="buttons__pause" id="pauseButton">[ pause ]</span>
+      <span class="buttons__disable" id="disableButton">[disable]</span>
+      <!-- <span class="buttons__close-toasts" id="closeToastsButton">[close toasts]</span> -->
     </div>
 
-    <div class="header" >
-      <span class="mode-redio">
-        <label class="checkbox">
-          <input type="radio" checked="checked" />
-        </label>
-        Enhanced Mode
-      </span>
+    <div class="header">
 
-      <span class="mode-redio">
-        <label class="checkbox">
-          <input type="radio"  />
-        </label>
-        Toasts-only Mode
-      </span>
-
-      <span class="mode-redio">
-        <label class="checkbox">
-          <input type="radio"  />
-        </label>
-        Simple Alert Mode
-      </span>
 
       <div class="header-line" ></div>
     </div>
@@ -44,7 +25,36 @@
 
         <div class="tab">
           <div class="settings">
+
             <div class="settings-item">
+              <span class="settings-item-title">Mode:</span>
+              <span class="settings-item-value">
+                <div class="settings-item-value__list">
+                  <span class="mode-radio">
+                    <input type="radio" id="defaultMode"/>
+                    <label class="checkbox" for="defaultMode">
+                      Default
+                    </label>
+                  </span>
+
+                  <span class="mode-radio">
+                    <input type="radio" id="toastsMode"/>
+                    <label class="checkbox" for="toastsMode">
+                      Toasts-only
+                    </label>
+                  </span>
+
+                  <span class="mode-radio">
+                    <input type="radio" id="simpleMode"/>
+                    <label class="checkbox" for="simpleMode">
+                      Simple alert
+                    </label>
+                  </span>
+                </div>
+              </span>
+            </div>
+
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Redefined console Methods:</span>
               <span class="settings-item-value">
                 <div class="settings-item-value__list">
@@ -76,7 +86,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Custom console Methods:</span>
               <span class="settings-item-value">
                 <label class="checkbox">
@@ -89,8 +99,8 @@
               </span>
             </div>
 
-            <div class="settings-item">
-              <span class="settings-item-title">Custom window Methods:</span>
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Additional window Methods:</span>
               <span class="settings-item-value">
                 <div></div>
                 <label class="checkbox">
@@ -101,11 +111,11 @@
 
             <div class="line" ></div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Show Alerts For:</span>
               <span class="settings-item-value">
                 <div></div>
-                <select class="select" size="1" name="showToast">
+                <select class="select" size="1" name="showAlert">
                   <option value="all" selected>All</option>
                   <option value="redefined">Redefined Methods</option>
                   <option value="custom">Custom Methods</option>
@@ -114,7 +124,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-title">Show Toasts For:</span>
               <span class="settings-item-value">
                 <div></div>
@@ -127,7 +137,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-title">Auto-hide Toasts(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
@@ -135,7 +145,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Alert Timeout(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
@@ -153,7 +163,7 @@
         <div class="tab">
           <div class="settings">
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Trigger to call alert():</span>
               <span class="settings-item-value">
                 <div></div>
@@ -163,7 +173,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Method to use as alert():</span>
               <span class="settings-item-value">
                 <div></div>
@@ -173,7 +183,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Reflect alert() in console using:</span>
               <span class="settings-item-value">
                 <div></div>
@@ -183,7 +193,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode" >
               <span class="settings-item-checkboxes">
                 pre-hook
                 <label class="checkbox">
@@ -195,7 +205,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-checkboxes">
                 after-hook
                 <label class="checkbox">
@@ -217,7 +227,7 @@
         <div class="tab">
           <div class="settings">
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
                 <label class="checkbox">
                   <input type="checkbox" checked="checked" />
@@ -233,7 +243,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
                 allow-list
                 <label class="checkbox">
@@ -245,7 +255,7 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
                 block-list
                 <label class="checkbox">
@@ -308,6 +318,10 @@
   </body>
 
   <style>
+    .disabled {
+      pointer-events: none;
+      opacity: 0.4;
+    }
     .container {
       width: 34rem;
       height: 25rem;
@@ -326,7 +340,11 @@
     .header {
       position: fixed;
       top: 2.5rem;
-      left: 1.5rem;
+      /*left: 1.5rem;*/
+    }
+    .mode-radio .checkbox{
+      cursor:  pointer;
+      font-size: medium;
     }
     .header-line {
       height: 1rem;
@@ -407,7 +425,7 @@
     .buttons__disable:hover {
       color: red;
     }
-    .buttons__disable__active {
+    .buttons__disable_active {
       cursor: pointer;
       font-weight: bold;
       color: orange;
