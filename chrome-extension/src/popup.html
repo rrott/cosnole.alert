@@ -8,7 +8,7 @@
     <div class="buttons">
       <span class="buttons__pause" id="pauseButton">[ pause ]</span>
       <span class="buttons__disable" id="disableButton">[disable]</span>
-      <!-- <span class="buttons__close-toasts" id="closeToastsButton">[close toasts]</span> -->
+      <span class="buttons__reload" id="reloadPageButton" >[reload page]</span>
     </div>
 
     <div class="header">
@@ -453,6 +453,19 @@
       cursor: pointer;
       font-weight: bold;
       color: red;
+    }
+    .buttons__reload {
+      color: darkgray;
+      cursor: pointer;
+    }
+    .buttons__reload_active {
+      color: red;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .buttons__reload:hover {
+      color: orange;
+      cursor: pointer;
     }
     .buttons__close-toasts {
       cursor: pointer;

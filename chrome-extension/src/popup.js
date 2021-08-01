@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     header: {
       pauseButton: document.getElementById('pauseButton'),
       disableButton: document.getElementById('disableButton'),
-      closeToastsButton: document.getElementById('closeToastsButton'),
+      reloadPageButton: document.getElementById('reloadPageButton'),
       resetConfigButton: document.getElementById('resetConfigButton'),
     },
     mode: {
@@ -62,11 +62,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const setConfig = async (options) => {
     config = {...config, ...options};
     await Config.setConfig(options);
+    elements.header.reloadPageButton.className = "buttons__reload_active";
   }
 
   const setIsOnPause = (isOnPause) => {
     const className = isOnPause ? 'buttons__pause_active' : 'buttons__pause';
-    elements.header.pauseButton.innerHTML = isOnPause ? "[paused]" : "[pause]";
+    elements.header.pauseButton.innerHTML = isOnPause ? "[paused]" : "[ pause ]";
     elements.header.pauseButton.className = className;
   }
 
@@ -231,6 +232,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       config = await Config.getConfig();
       window.cosnoleAlertConfig = config;
       setInitialValues();
+    }
+
+    elements.header.reloadPageButton.onclick = () => {
+      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+      });
     }
 
     elements.header.pauseButton.onclick = () => {
