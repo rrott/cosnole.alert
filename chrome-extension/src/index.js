@@ -13,7 +13,7 @@ const embedScript = () => {
     showAlertsFor: "none",    // "all", "none", "redefined", "custom"
     customMethods: ["alert"], // adds additional custom methods to the console object
     redefinedMethods: ["log", "warn", "info", "error", "table"], // list of console object methods to redefine
-    customGlobalFunctions: ['p'],   // if not empty, adds it as an alert() to the window object
+    customGlobalMethods: ['p'],   // if not empty, adds it as an alert() to the window object
     allowlist: [],
     blockList: [],
     preHook: ({methodName, args}) => {}, // function to be run before the alert()

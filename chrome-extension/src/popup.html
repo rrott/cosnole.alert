@@ -13,7 +13,7 @@
 
     <div class="header">
 
-
+      <span class="buttons__disable" id="resetConfigButton">[reset to defaults]</span>
       <div class="header-line" ></div>
     </div>
 
@@ -58,30 +58,30 @@
               <span class="settings-item-title">Redefined console Methods:</span>
               <span class="settings-item-value">
                 <div class="settings-item-value__list">
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>table
-                  </label>
+                  <div class="checkbox">
+                    <input type="checkbox" id="tableMethod"/>
+                    <label class="checkmark" for="tableMethod">table</label>
+                  </div>
 
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>error
-                  </label>
+                  <div class="checkbox">
+                    <input type="checkbox" id="errorMethod" />
+                    <label class="checkmark" for="errorMethod">error</label>
+                  </div>
 
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>warn
-                  </label>
+                  <div class="checkbox">
+                    <input type="checkbox" id="warnMethod" />
+                    <label class="checkmark" for="warnMethod">warn</label>
+                  </div>
 
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>info
-                  </label>
+                  <div class="checkbox">
+                    <input type="checkbox" id="infoMethod" />
+                    <label class="checkmark" for="infoMethod">info</label>
+                  </div>
 
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>log
-                  </label>
+                  <div class="checkbox">
+                    <input type="checkbox" id="logMethod" />
+                    <label class="checkmark" for="logMethod">log</label>
+                  </div>
                 </div>
               </span>
             </div>
@@ -89,23 +89,33 @@
             <div class="settings-item default-mode">
               <span class="settings-item-title">Custom console Methods:</span>
               <span class="settings-item-value">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                  <span class="checkmark"></span>alert
-                </label>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="separate by comma" />
-                </label>
+                <div class="checkbox">
+                  <input type="checkbox" id="customConsoleAlertMethod"/>
+                  <label class="checkmark" for="customConsoleAlertMethod">alert</span>
+                </div>
+                <div class="checkbox">
+                  <input 
+                    type="text" 
+                    class="input" 
+                    placeholder="separate by comma" 
+                    id="customConsoleMethods"
+                  />
+                </div>
               </span>
             </div>
 
             <div class="settings-item default-mode">
-              <span class="settings-item-title">Additional window Methods:</span>
+              <span class="settings-item-title">Custom global Methods:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="separate by comma" />
-                </label>
+                <div class="checkbox">
+                  <input 
+                    type="text" 
+                    class="input" 
+                    placeholder="separate by comma"
+                    id="customGlobalMethods"
+                  />
+                </div>
               </span>
             </div>
 
@@ -115,8 +125,8 @@
               <span class="settings-item-title">Show Alerts For:</span>
               <span class="settings-item-value">
                 <div></div>
-                <select class="select" size="1" name="showAlert">
-                  <option value="all" selected>All</option>
+                <select class="select" size="1" id="showAlertsFor">
+                  <option value="all">All</option>
                   <option value="redefined">Redefined Methods</option>
                   <option value="custom">Custom Methods</option>
                   <option value="none">None</option>
@@ -128,7 +138,7 @@
               <span class="settings-item-title">Show Toasts For:</span>
               <span class="settings-item-value">
                 <div></div>
-                <select class="select" size="1" name="showToast">
+                <select class="select" size="1" id="showToastsFor">
                   <option value="all" selected>All</option>
                   <option value="redefined">Redefined Methods</option>
                   <option value="custom">Custom Methods</option>
@@ -141,7 +151,12 @@
               <span class="settings-item-title">Auto-hide Toasts(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
-                <input type="text" class="input" placeholder="0 to disable" />
+                <input 
+                  type="text" 
+                  class="input" 
+                  placeholder="0 to disable"
+                  id="toastHideTimeout"
+                />
               </span>
             </div>
 
@@ -149,7 +164,12 @@
               <span class="settings-item-title">Alert Timeout(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
-                <input type="text" class="input" placeholder="0 to disable" />
+                <input 
+                  type="text"
+                  class="input"
+                  placeholder="0 to disable"
+                  id="alertShowTimeout"
+                />
               </span>
             </div>
           </div>
@@ -340,7 +360,7 @@
     .header {
       position: fixed;
       top: 2.5rem;
-      /*left: 1.5rem;*/
+      left: 1rem;
     }
     .mode-radio .checkbox{
       cursor:  pointer;
@@ -411,7 +431,7 @@
       color: darkgray;
     }
      .buttons__pause:hover {
-      color: green;
+      color: orange;
     }
     .buttons__pause_active {
       cursor: pointer;
@@ -428,7 +448,7 @@
     .buttons__disable_active {
       cursor: pointer;
       font-weight: bold;
-      color: orange;
+      color: red;
     }
     .buttons__close-toasts {
       cursor: pointer;

@@ -48,7 +48,7 @@ const cosnoleToast =  (encodedConfig) => {
     const message = formatToastMessage({methodName, args});
     Toaster.add({
       message, methodName, 
-      timeout: window.cosnoleAlertConfig?.toastHideTimeout,
+      timeout: window.cosnoleAlertConfig?.toastHideTimeout * 1000,
     });
   }
 
@@ -98,7 +98,11 @@ const cosnoleToast =  (encodedConfig) => {
 
   const redefineConsoleMethod = ({methodName, args}) => {
     if (window.cosnoleAlertConfig?.alertShowTimeout) {
-      setTimeout(customConsoleAlert, window.cosnoleAlertConfig?.alertShowTimeout, {methodName, args});
+      setTimeout(
+      	customConsoleAlert,
+      	window.cosnoleAlertConfig?.alertShowTimeout * 1000,
+      	{methodName, args}
+      );
     } else {
       customConsoleAlert({methodName, args});
     }
