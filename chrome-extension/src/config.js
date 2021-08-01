@@ -18,8 +18,8 @@ const DEFULT_CONFIG = {
   isUseAllowList: false,
   isUseBlockList: false,
   isUseForLocalhost: false,
-  preHook: ({methodName, args}) => {}, // function to be run before the alert()
-  afterHook: ({methodName, args}) => {}, // function to be run after the alert()
+  preHook: null, // function to be run before the alert()
+  afterHook: null, // function to be run after the alert()
 }
 
 class Config {

@@ -191,19 +191,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.lists.isUseAllowList.checked = listOptions.isUseAllowList;
     elements.lists.isUseBlockList.checked = listOptions.isUseBlockList;
     elements.lists.isUseForLocalhost.checked = listOptions.isUseForLocalhost;
+    elements.lists.allowList.classList.add("disabled");
+    elements.lists.blockList.classList.add("disabled");
 
     if (listOptions.isUseAllowList) {
       elements.lists.allowList.classList.remove("disabled");
-      elements.lists.blockList.classList.add("disabled");
-    }
-    if (listOptions.isUseBlockList) {
-      elements.lists.allowList.classList.add("disabled");
+    } else if (listOptions.isUseBlockList) {
       elements.lists.blockList.classList.remove("disabled");
-    }
-    if (listOptions.isUseForLocalhost) {
-      elements.lists.allowList.classList.add("disabled");
-      elements.lists.blockList.classList.add("disabled");
-    }
+    } 
   }
 
   const setInitialValues = () => {
@@ -368,7 +363,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     elements.lists.isUseAllowList.onclick = () => {
       const options = {
-        isUseAllowList: true,
+        isUseAllowList: !config.isUseAllowList,
         isUseBlockList: false,
         isUseForLocalhost: false
       }
@@ -379,7 +374,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.lists.isUseBlockList.onclick = () => {
       const options = {
         isUseAllowList: false,
-        isUseBlockList: true,
+        isUseBlockList: !config.isUseBlockList,
         isUseForLocalhost: false
       }
       setListOptions(options);
@@ -390,7 +385,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const options = {
         isUseAllowList: false,
         isUseBlockList: false,
-        isUseForLocalhost: true
+        isUseForLocalhost: !config.isUseForLocalhost
       }
       setListOptions(options);
       setConfig(options);
