@@ -255,42 +255,40 @@
 
             <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                </label>
-                Use allow-list
+                <input type="checkbox" id="isUseAllowList" />
+                <label class="checkbox" for="isUseAllowList">Use allow-list</label>
+              </span>
+              
+              <span class="settings-item-checkboxes">
+                <input type="checkbox" id="isUseBlockList" />
+                <label class="checkbox" for="isUseBlockList">Use block-list</label>
               </span>
 
               <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" />
-                </label>
-                Use block-list
+                <input type="checkbox" id="isUseForLocalhost" />
+                <label class="checkbox" for="isUseForLocalhost">localhost(127.0.0.1) only</label>
               </span>
             </div>
 
             <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
                 allow-list
-                <label class="checkbox">
-                  <textarea 
-                    placeholder="e.g.: http://localhost:8080"
-                    rows="5" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea 
+                  placeholder="e.g.: http://localhost:8080"
+                  rows="5" cols="63" name="text"
+                  id="allowList"
+                ></textarea>
               </span>
             </div>
 
             <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
                 block-list
-                <label class="checkbox">
-                  <textarea 
-                    disabled="disabled"
-                    placeholder="e.g.: http://127.0.0.1:8080"
-                    rows="5" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea 
+                  placeholder="e.g.: http://127.0.0.1:8080"
+                  rows="5" cols="63" name="text"
+                  id="blockList"
+                ></textarea>
               </span>
             </div>
           </div>

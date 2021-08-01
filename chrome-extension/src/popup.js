@@ -55,6 +55,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     logMethod: document.getElementById('logMethod'),
     preHook: document.getElementById('preHook'),
     afterHook: document.getElementById('afterHook'),
+    lists: {
+      allowList: document.getElementById('allowList'),
+      blockList: document.getElementById('blockList'),
+      isUseAllowList: document.getElementById('isUseAllowList'),
+      isUseBlockList: document.getElementById('isUseBlockList'),
+      isUseForLocalhost: document.getElementById('isUseForLocalhost'),
+    },
     blocks: {
       default: document.querySelectorAll(".default-mode"),
       toasts: document.querySelectorAll(".toasts-mode"),
@@ -168,8 +175,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.preHook.value = preHook;
   }
 
-  const setAfterHook= (afterHook) => {
+  const setAfterHook = (afterHook) => {
     elements.afterHook.value = afterHook;
+  }
+
+  const setAllowList = (allowList) => {
+    elements.lists.allowList.value = allowList;
+  }
+
+  const setBlockList = (blockList) => {
+    elements.lists.blockList.value = blockList;
+  }
+
+  const setListOptions = (listOptions) => {
+    elements.lists.isUseAllowList.checked = listOptions.isUseAllowList;
+    elements.lists.isUseBlockList.checked = listOptions.isUseBlockList;
+    elements.lists.isUseForLocalhost.checked = listOptions.isUseForLocalhost;
+
+    if (listOptions.isUseAllowList) {
+      elements.lists.allowList.classList.remove("disabled");
+      elements.lists.blockList.classList.add("disabled");
+    }
+    if (listOptions.isUseBlockList) {
+      elements.lists.allowList.classList.add("disabled");
+      elements.lists.blockList.classList.remove("disabled");
+    }
+    if (listOptions.isUseForLocalhost) {
+      elements.lists.allowList.classList.add("disabled");
+      elements.lists.blockList.classList.add("disabled");
+    }
   }
 
   const setInitialValues = () => {
@@ -189,6 +223,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     setLogMethod(config.logMethod);
     setPreHook(config.preHook);
     setAfterHook(config.afterHook);
+    setAllowList(config.allowList);
+    setBlockList(config.blockList);
+    setListOptions({
+      isUseAllowList: config.isUseAllowList,
+      isUseBlockList: config.isUseBlockList,
+      isUseForLocalhost: config.isUseForLocalhost
+    });
   }
 
   const init = () => {
@@ -311,6 +352,48 @@ document.addEventListener('DOMContentLoaded', async () => {
       let afterHook = (e.target.value) || null;
       setAfterHook(afterHook);
       setConfig({afterHook});
+    }
+
+    elements.lists.allowList.onchange = (e) => {
+      let allowList = (e.target.value) || null;
+      setAllowList(allowList);
+      setConfig({allowList});
+    }
+
+    elements.lists.blockList.onchange = (e) => {
+      let blockList = (e.target.value) || null;
+      setBlockList(blockList);
+      setConfig({blockList});
+    }
+
+    elements.lists.isUseAllowList.onclick = () => {
+      const options = {
+        isUseAllowList: true,
+        isUseBlockList: false,
+        isUseForLocalhost: false
+      }
+      setListOptions(options);
+      setConfig(options);
+    }
+
+    elements.lists.isUseBlockList.onclick = () => {
+      const options = {
+        isUseAllowList: false,
+        isUseBlockList: true,
+        isUseForLocalhost: false
+      }
+      setListOptions(options);
+      setConfig(options);
+    }
+
+    elements.lists.isUseForLocalhost.onclick = () => {
+      const options = {
+        isUseAllowList: false,
+        isUseBlockList: false,
+        isUseForLocalhost: true
+      }
+      setListOptions(options);
+      setConfig(options);
     }
   }
 

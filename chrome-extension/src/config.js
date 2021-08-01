@@ -13,8 +13,11 @@ const DEFULT_CONFIG = {
   customMethods: ["alert"], // adds additional custom methods to the console object
   redefinedMethods: ["log", "warn", "info", "error", "table"], // list of console object methods to redefine
   customGlobalMethods: ['p'],   // if not empty, adds it as an alert() to the window object
-  allowlist: [],
+  allowList: [],
   blockList: [],
+  isUseAllowList: false,
+  isUseBlockList: false,
+  isUseForLocalhost: false,
   preHook: ({methodName, args}) => {}, // function to be run before the alert()
   afterHook: ({methodName, args}) => {}, // function to be run after the alert()
 }

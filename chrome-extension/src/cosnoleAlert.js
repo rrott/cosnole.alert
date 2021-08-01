@@ -84,8 +84,8 @@ const cosnoleAlert =  (encodedConfig) => {
 
   const customConsoleAlert = ({methodName, args}) => {
     const isShowAlert = !window.cosnoleAlertConfig?.alertTrigger || args[0] === window.cosnoleAlertConfig?.alertTrigger;
-    const preHook = new Function(methodName, args, window.cosnoleAlertConfig?.preHook);
-    const afterHook = new Function(methodName, args, window.cosnoleAlertConfig?.afterHook);
+    const preHook = new Function({methodName, args}, window.cosnoleAlertConfig?.preHook);
+    const afterHook = new Function({methodName, args}, window.cosnoleAlertConfig?.afterHook);
     const isRunPreHook = !!window.cosnoleAlertConfig?.preHook;
     const isRunAfterHook = !!window.cosnoleAlertConfig?.afterHook;
     
