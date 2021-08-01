@@ -114,9 +114,11 @@ const cosnoleAlert =  (encodedConfig) => {
     console[methodName] = (...args) => redefineConsoleMethod({args, methodName})
   )
 
-  window.cosnoleAlertConfig?.customGlobalMethods.map((methodName) =>
-    window[methodName] = (...args) => redefineConsoleMethod({args})
-  )
+  window.cosnoleAlertConfig?.customGlobalMethods.map((methodName) => {
+    if (!(methodName in window)) {
+      window[methodName] = (...args) => redefineConsoleMethod({args});
+    }
+  })
 }
 
 window.cosnoleAlert = cosnoleAlert;
