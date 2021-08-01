@@ -2,98 +2,137 @@
 <html>
   <head>
     <title>cosnole.alert()</title>
-    <script src="src/popup.js"></script>
+    <script src="./popup.js" type="module"></script>
   </head>
   <body>
-    <div class="buttons">
-      <span class="buttons__pause"   >[ pause ]</span>
-      <span class="buttons__disable" >[disable]</span>
-      <span class="buttons__close-toasts">[close toasts]</span>
-    </div>
 
     <div class="container">
       <div class="tabs">
-        <input type="radio" name="tabs" id="options" checked="checked" />
-        <label class="tabs-label" for="options">[options]</label>
-
-        <div class="tab">
+        <h1>cosnole.alert()</h1>
+        <h3>Extends browser's console object with the alert() function.<br/>
+        Shows console logs/errors/warnings as toast messages to help you catch bugs faster.</h3>
+        <div class="line" ></div>
+        <div>
+          <div class="buttons">
+            <span class="buttons__pause" id="pauseButton">[ pause ]</span>
+            <span class="buttons__disable" id="disableButton">[disable]</span>
+            <span class="buttons__disable" id="resetConfigButton">[reset to defaults]</span>
+          </div>
           <div class="settings">
             <div class="line" ></div>
             <div class="settings-item">
-              <span class="settings-item-title">Redefined console Methods:</span>
+              <span class="settings-item-title">Mode:</span>
               <span class="settings-item-value">
                 <div class="settings-item-value__list">
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>error
-                  </label>
+                  <span class="mode-radio">
+                    <input type="radio" id="defaultMode"/>
+                    <label class="checkbox" for="defaultMode">
+                      Default
+                    </label>
+                  </span>
 
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>warn
-                  </label>
+                  <span class="mode-radio">
+                    <input type="radio" id="toastsMode"/>
+                    <label class="checkbox" for="toastsMode">
+                      Toasts-only
+                    </label>
+                  </span>
 
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>info
-                  </label>
-
-                  <label class="checkbox">
-                    <input type="checkbox" checked="checked" />
-                    <span class="checkmark"></span>log
-                  </label>
+                  <span class="mode-radio">
+                    <input type="radio" id="simpleMode"/>
+                    <label class="checkbox" for="simpleMode">
+                      Simple alert
+                    </label>
+                  </span>
                 </div>
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Redefined console Methods:</span>
+              <span class="settings-item-value">
+                <div class="settings-item-value__list">
+                  <div class="checkbox">
+                    <input type="checkbox" id="tableMethod"/>
+                    <label class="checkmark" for="tableMethod">table</label>
+                  </div>
+
+                  <div class="checkbox">
+                    <input type="checkbox" id="errorMethod" />
+                    <label class="checkmark" for="errorMethod">error</label>
+                  </div>
+
+                  <div class="checkbox">
+                    <input type="checkbox" id="warnMethod" />
+                    <label class="checkmark" for="warnMethod">warn</label>
+                  </div>
+
+                  <div class="checkbox">
+                    <input type="checkbox" id="infoMethod" />
+                    <label class="checkmark" for="infoMethod">info</label>
+                  </div>
+
+                  <div class="checkbox">
+                    <input type="checkbox" id="logMethod" />
+                    <label class="checkmark" for="logMethod">log</label>
+                  </div>
+                </div>
+              </span>
+            </div>
+
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Custom console Methods:</span>
               <span class="settings-item-value">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                  <span class="checkmark"></span>alert
-                </label>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="separate by comma" />
-                </label>
+                <div class="checkbox">
+                  <input type="checkbox" id="customConsoleAlertMethod"/>
+                  <label class="checkmark" for="customConsoleAlertMethod">alert</span>
+                </div>
+                <div class="checkbox">
+                  <input
+                    type="text"
+                    class="input"
+                    placeholder="separate by comma"
+                    id="customConsoleMethods"
+                  />
+                </div>
               </span>
             </div>
 
-            <div class="settings-item">
-              <span class="settings-item-title">Custom window Methods:</span>
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Custom global Methods:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="separate by comma" />
-                </label>
+                <div class="checkbox">
+                  <input
+                    type="text"
+                    class="input"
+                    placeholder="separate by comma"
+                    id="customGlobalMethods"
+                  />
+                </div>
               </span>
             </div>
 
             <div class="line" ></div>
 
-            <div class="settings-item">
-              <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                </label>
-                Stringify Output
-              </span>
-
-              <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                </label>
-                Show Alert Title
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Show Alerts For:</span>
+              <span class="settings-item-value">
+                <div></div>
+                <select class="select" size="1" id="showAlertsFor">
+                  <option value="all">All</option>
+                  <option value="redefined">Redefined Methods</option>
+                  <option value="custom">Custom Methods</option>
+                  <option value="none">None</option>
+                </select>
               </span>
             </div>
 
-            <div class="line" ></div>
-
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-title">Show Toasts For:</span>
               <span class="settings-item-value">
                 <div></div>
-                <select class="select" size="1" name="showToast">
+                <select class="select" size="1" id="showToastsFor">
                   <option value="all" selected>All</option>
                   <option value="redefined">Redefined Methods</option>
                   <option value="custom">Custom Methods</option>
@@ -102,192 +141,173 @@
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-title">Auto-hide Toasts(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
-                <input type="text" class="input" placeholder="0 to disable" />
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="0 to disable"
+                  id="toastHideTimeout"
+                />
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Alert Timeout(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
-                <input type="text" class="input" placeholder="0 to disable" />
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="0 to disable"
+                  id="alertShowTimeout"
+                />
               </span>
             </div>
           </div>
-          <span class="footer-sign">
-            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
-          </span>
         </div>
-        
-        <input type="radio" name="tabs" id="advanced" />
-        <label class="tabs-label" for="advanced">[advanced]</label>
-        <div class="tab">
+        <div>
+          <div class="line" ></div>
           <div class="settings">
-            <div class="line" ></div>
 
-            <div class="settings-item">
-              <span class="settings-item-title">Trigger to call alert():</span>
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Trigger to call alert:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="e.g.: 42 or oklahoma" />
-                </label>
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="e.g.: 42 or oklahoma"
+                  id="alertTrigger"
+                />
               </span>
             </div>
 
-            <div class="settings-item">
-              <span class="settings-item-title">Method to use as alert():</span>
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Method to use to alert:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="e.g.: alert, confirm, promt" />
-                </label>
+                <select class="select" size="1" id="alertMethod">
+                  <option value="alert">alert</option>
+                  <option value="confirm">confirm</option>
+                  <option value="promt">promt</option>
+                </select>
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-title">Reflect alert() in console using:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="e.g.: log, warn, error, info" />
-                </label>
+                <select class="select" size="1" id="logMethod">
+                  <option value="log">log</option>
+                  <option value="info">info</option>
+                  <option value="warn">warn</option>
+                  <option value="error">error</option>
+                </select>
               </span>
             </div>
+            <div class="line" ></div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode" >
               <span class="settings-item-checkboxes">
                 pre-hook
-                <label class="checkbox">
-                  <textarea 
-                    placeholder="anonymous function to be run before alert() is called"
-                    rows="3" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea
+                  placeholder="anonymous function to be run before alert() is called"
+                  rows="3" cols="65" name="text"
+                  id="afterHook"
+                ></textarea>
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode">
               <span class="settings-item-checkboxes">
                 after-hook
-                <label class="checkbox">
-                  <textarea 
-                    placeholder="anonymous function to be run after alert() is called"
-                    rows="3" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea
+                  placeholder="anonymous function to be run after alert() is called"
+                  rows="3" cols="65" name="text"
+                  id="preHook"
+                ></textarea>
               </span>
             </div>
           </div>
-          <span class="footer-sign">
-            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
-          </span>
         </div>
 
-        <input type="radio" name="tabs" id="lists" />
-        <label class="tabs-label" for="lists">[lists]</label>
-        <div class="tab">
+        <div>
+          <div class="line" ></div>
           <div class="settings">
-            <div class="line" ></div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" checked="checked" />
-                </label>
-                Use allow-list
+                <input type="checkbox" id="isUseAllowList" />
+                <label class="checkbox" for="isUseAllowList">Use allow-list</label>
               </span>
 
               <span class="settings-item-checkboxes">
-                <label class="checkbox">
-                  <input type="checkbox" />
-                </label>
-                Use block-list
+                <input type="checkbox" id="isUseBlockList" />
+                <label class="checkbox" for="isUseBlockList">Use block-list</label>
+              </span>
+
+              <span class="settings-item-checkboxes">
+                <input type="checkbox" id="isUseForLocalhost" />
+                <label class="checkbox" for="isUseForLocalhost">localhost(127.0.0.1) only</label>
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
                 allow-list
-                <label class="checkbox">
-                  <textarea 
-                    placeholder="urls to be used for. e.g.: http://localhost:8080"
-                    rows="5" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea
+                  class="disabled"
+                  placeholder="e.g.: http://localhost:8080"
+                  rows="5" cols="65" name="text"
+                  id="allowList"
+                ></textarea>
               </span>
             </div>
 
-            <div class="settings-item">
+            <div class="settings-item default-mode toasts-mode">
               <span class="settings-item-checkboxes">
                 block-list
-                <label class="checkbox">
-                  <textarea 
-                    disabled="disabled"
-                    placeholder="urls to be ignored. e.g.: http://127.0.0.1:8080"
-                    rows="5" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea
+                  class="disabled"
+                  placeholder="e.g.: http://127.0.0.1:8080"
+                  rows="5" cols="65" name="text"
+                  id="blockList"
+                ></textarea>
               </span>
             </div>
           </div>
-          <span class="footer-sign">
-            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
-          </span>
-        </div>
-
-        <input type="radio" name="tabs" id="logs" />
-        <label class="tabs-label" for="logs">[logs]</label>
-        <div class="tab">
-          <div class="settings">
-            <div class="line" ></div>
-            <pre>
-              console.log() calls log. TBD
-            </pre>
-          </div>
-          <span class="footer-sign">
-            <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
-          </span>
-        </div>
-
-        <input type="radio" name="tabs" id="about" />
-        <label class="tabs-label" for="about">[about]</label>
-        <div class="tab">
-          <h1>cosnole.alert()</h1>
-          <h3>Extends browser's console and window objects to:</h3>
-          <ul>
-            <li>show toast messages on all console.log() calls</li>
-            <li>attach alert() function to the console object</li>
-            <li>stop js runtime and call alert() on all or pre-defined console.log() calls</li>
-            <li>attach custom methods to the console and window object</li>
-            <li>run pre- and after-hooks methods around console.log() call</li>
-            <li>etc.. (See documentation)</li>
-          </ul>
-          <br />
-          <span class="about-sign">
-            <strong>author:</strong> <a href='https://rrott.com'>rrott</a> <br />
-            <strong>source code:</strong> <a href='https://github.com/rrott/cosnole.alert'>github.com/rrott/cosnole.alert</a> <br />
-            <strong>documentation:</strong> <a href='https://rrott.com/cosnole.alert'>https://rrott.com/cosnole.alert</a> <br />
-          </span>
         </div>
       </div>
     </div>
 
-    <div class="bottom-line" ></div>
-    <svg width="64px" height="64px" viewBox="0 0 126 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
-        <path stroke="#000000" stroke-width="2" d="M63,20.9983616 L124.267002,127 L1.73299801,127 L63,20.9983616 Z"></path>
-      </g>
-    </svg>
+    <div class="footer-line" >
+      <span class="about-sign">
+        <strong>author:</strong> <a href='https://rrott.com'>rrott</a> <br />
+        <strong>source code:</strong> <a href='https://github.com/rrott/cosnole.alert'>github.com/rrott/cosnole.alert</a> <br />
+        <strong>documentation:</strong> <a href='https://rrott.com/cosnole.alert'>https://rrott.com/cosnole.alert</a> <br />
+      </span>
+      <svg width="64px" height="64px" viewBox="0 0 126 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
+          <path stroke="#000000" stroke-width="2" d="M63,20.9983616 L124.267002,127 L1.73299801,127 L63,20.9983616 Z"></path>
+        </g>
+      </svg>
+    </div>
   </body>
 
   <style>
+    .disabled {
+      pointer-events: none;
+      opacity: 0.4;
+    }
+    .tabs {
+      padding-bottom: 10rem;
+    }
     .container {
-      width: 32rem;
+      width: 34rem;
       height: 25rem;
       max-height: 25rem;
       box-sizing: border-box;
@@ -301,14 +321,8 @@
       margin-bottom: 0.5rem;
       border-bottom: 1px solid lightgray;
     }
-    .bottom-line {
-      height: 1rem;
-      width: 30rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid lightgray;
-      position: fixed;
-      bottom: 4.5rem;
-      left: 1.5rem;
+    .mode-radio .checkbox{
+      cursor:  pointer;
     }
     .footer-sign {
       position: fixed;
@@ -320,11 +334,6 @@
       font-family: monospace;
       font-size: 18px;
       text-decoration: none;
-    }
-    .about-sign {
-      position: fixed;
-      bottom: 1rem;
-      left: 1.5rem;
     }
     .checkbox {
       cursor: pointer;
@@ -338,41 +347,38 @@
       width: calc(11rem - 2px);
     }
     .buttons {
-      position: absolute;
       cursor: pointer;
-      top: 0;
-      right: 0;
-      width: 7rem;
-      height: 2rem;
       display: flex;
       align-items: flex-end;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 0.5rem;
+      flex-direction: row;
     }
     .buttons__pause {
       cursor: pointer;
-      color: darkgray;
+      /*color: darkgray;*/
+      padding-right: 1rem;
     }
      .buttons__pause:hover {
-      color: green;
+      color: orange;
     }
     .buttons__pause_active {
       cursor: pointer;
       font-weight: bold;
       color: orange;
+      padding-right: 1rem;
     }
     .buttons__disable {
       cursor: pointer;
-      color: darkgray;
+      /*color: darkgray;*/
+      padding-right: 1rem;
     }
     .buttons__disable:hover {
       color: red;
     }
-    .buttons__disable__active {
+    .buttons__disable_active {
       cursor: pointer;
       font-weight: bold;
-      color: orange;
+      color: red;
+      padding-right: 1rem;
     }
     .buttons__close-toasts {
       cursor: pointer;
@@ -380,18 +386,6 @@
     }
      .buttons__close-toasts:hover {
       color: orange;
-    }
-    .tabs-label {
-      margin: 0 !important;
-      color: black;
-      cursor: pointer;
-      font-weight: normal;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-      cursor: pointer;
-      background: lightgray;
-      display: flex;
-      transition: background ease 0.5s;
     }
     .settings {
       display: flex;
@@ -411,7 +405,7 @@
     .settings-item-value {
       display: flex;
       justify-content: space-between;
-      width: 15rem;
+      width: 17rem;
       flex-direction: row;
     }
     .settings-item-value__list {
@@ -426,33 +420,21 @@
       font-weight: bold;
       cursor: pointer;
     }
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .tabs .tab {
-      order: 99;
-      flex-grow: 1;
-      width: 100%;
-      display: none;
+
+    .footer-line {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      border-top: 1px solid lightgray;
       padding: 1rem;
-      background: #fff;
-    }
-    .tabs input[type="radio"] {
-      display: none;
-    }
-    .tabs input[type="radio"]:checked + label {
-      background: #fff;
-      font-weight: bold;
-    }
-    .tabs input[type="radio"]:checked + label + .tab {
-      display: block;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: calc(100vw - 2rem);
+      background-color: white;
     }
     svg {
       opacity: 0.6;
-      position: fixed;
-      bottom: 1rem;
-      right: 1.25rem;
     }
   </style>
 </html>

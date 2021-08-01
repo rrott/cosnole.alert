@@ -16,8 +16,6 @@
       <span class="buttons__disable" id="resetConfigButton">[reset to defaults]</span>
       <div class="header-line" ></div>
     </div>
-
-
     <div class="container">
       <div class="tabs">
         <input type="radio" name="tabs" id="options" checked="checked" />
@@ -94,10 +92,10 @@
                   <label class="checkmark" for="customConsoleAlertMethod">alert</span>
                 </div>
                 <div class="checkbox">
-                  <input 
-                    type="text" 
-                    class="input" 
-                    placeholder="separate by comma" 
+                  <input
+                    type="text"
+                    class="input"
+                    placeholder="separate by comma"
                     id="customConsoleMethods"
                   />
                 </div>
@@ -109,9 +107,9 @@
               <span class="settings-item-value">
                 <div></div>
                 <div class="checkbox">
-                  <input 
-                    type="text" 
-                    class="input" 
+                  <input
+                    type="text"
+                    class="input"
                     placeholder="separate by comma"
                     id="customGlobalMethods"
                   />
@@ -151,9 +149,9 @@
               <span class="settings-item-title">Auto-hide Toasts(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
-                <input 
-                  type="text" 
-                  class="input" 
+                <input
+                  type="text"
+                  class="input"
                   placeholder="0 to disable"
                   id="toastHideTimeout"
                 />
@@ -164,7 +162,7 @@
               <span class="settings-item-title">Alert Timeout(seconds):</span>
               <span class="settings-item-value">
                 <div></div>
-                <input 
+                <input
                   type="text"
                   class="input"
                   placeholder="0 to disable"
@@ -177,7 +175,7 @@
             <a href='https://rrott.com/cosnole.alert'>cosnole.alert()</a>
           </span>
         </div>
-        
+
         <input type="radio" name="tabs" id="advanced" />
         <label class="tabs-label" for="advanced">[advanced]</label>
         <div class="tab">
@@ -187,9 +185,9 @@
               <span class="settings-item-title">Trigger to call alert:</span>
               <span class="settings-item-value">
                 <div></div>
-                <input 
-                  type="text" 
-                  class="input" 
+                <input
+                  type="text"
+                  class="input"
                   placeholder="e.g.: 42 or oklahoma"
                   id="alertTrigger"
                 />
@@ -258,7 +256,7 @@
                 <input type="checkbox" id="isUseAllowList" />
                 <label class="checkbox" for="isUseAllowList">Use allow-list</label>
               </span>
-              
+
               <span class="settings-item-checkboxes">
                 <input type="checkbox" id="isUseBlockList" />
                 <label class="checkbox" for="isUseBlockList">Use block-list</label>
@@ -274,7 +272,7 @@
               <span class="settings-item-checkboxes">
                 allow-list
                 <textarea
-                  class="disabled" 
+                  class="disabled"
                   placeholder="e.g.: http://localhost:8080"
                   rows="5" cols="63" name="text"
                   id="allowList"
@@ -316,7 +314,7 @@
         <label class="tabs-label" for="about">[about]</label>
         <div class="tab">
           <h1>cosnole.alert()</h1>
-          <h3>Extends browser's console and window objects to:</h3>
+          <h3>Extends browser's console object to:</h3>
           <ul>
             <li>show toast messages on all console.log() calls</li>
             <li>attach alert() function to the console object</li>
