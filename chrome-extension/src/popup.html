@@ -184,22 +184,27 @@
           <div class="settings">
 
             <div class="settings-item default-mode">
-              <span class="settings-item-title">Trigger to call alert():</span>
+              <span class="settings-item-title">Trigger to call alert:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="e.g.: 42 or oklahoma" />
-                </label>
+                <input 
+                  type="text" 
+                  class="input" 
+                  placeholder="e.g.: 42 or oklahoma"
+                  id="alertTrigger"
+                />
               </span>
             </div>
 
             <div class="settings-item default-mode">
-              <span class="settings-item-title">Method to use as alert():</span>
+              <span class="settings-item-title">Method to use to alert:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="e.g.: alert, confirm, promt" />
-                </label>
+                <select class="select" size="1" id="alertMethod">
+                  <option value="alert">alert</option>
+                  <option value="confirm">confirm</option>
+                  <option value="promt">promt</option>
+                </select>
               </span>
             </div>
 
@@ -207,33 +212,34 @@
               <span class="settings-item-title">Reflect alert() in console using:</span>
               <span class="settings-item-value">
                 <div></div>
-                <label class="checkbox">
-                  <input type="text" class="input" placeholder="e.g.: log, warn, error, info" />
-                </label>
+                <select class="select" size="1" id="logMethod">
+                  <option value="log">log</option>
+                  <option value="info">info</option>
+                  <option value="warn">warn</option>
+                  <option value="error">error</option>
+                </select>
               </span>
             </div>
 
             <div class="settings-item default-mode" >
               <span class="settings-item-checkboxes">
                 pre-hook
-                <label class="checkbox">
-                  <textarea 
-                    placeholder="anonymous function to be run before alert() is called"
-                    rows="3" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea 
+                  placeholder="anonymous function to be run before alert() is called"
+                  rows="3" cols="63" name="text"
+                  id="afterHook"
+                ></textarea>
               </span>
             </div>
 
             <div class="settings-item default-mode">
               <span class="settings-item-checkboxes">
                 after-hook
-                <label class="checkbox">
-                  <textarea 
-                    placeholder="anonymous function to be run after alert() is called"
-                    rows="3" cols="57" name="text"
-                  ></textarea>
-                </label>
+                <textarea 
+                  placeholder="anonymous function to be run after alert() is called"
+                  rows="3" cols="63" name="text"
+                  id="preHook"
+                ></textarea>
               </span>
             </div>
           </div>

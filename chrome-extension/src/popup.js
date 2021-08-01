@@ -1,13 +1,8 @@
 import {Config} from './config.js';
 
 const DEFULT_CONFIG = {
-  alertTrigger: "",         // custom "stop-word" that triggers the alert
-  alertMethod: "alert",     // "alert", "promt" or "confirm"
-  logMethod: "warn",        // "log", "warn", "info" or "error"
   allowlist: [],
   blockList: [],
-  preHook: ({methodName, args}) => {}, // function to be run before the alert()
-  afterHook: ({methodName, args}) => {}, // function to be run after the alert()
 }
 const APP_MODES = ["default", "toasts", "simple"];
 const REDEFINED_METHODS_LIST = ["log", "warn", "info", "error", "table"];
@@ -31,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       disableButton: document.getElementById('disableButton'),
       closeToastsButton: document.getElementById('closeToastsButton'),
       resetConfigButton: document.getElementById('resetConfigButton'),
-    }, 
+    },
     mode: {
       default: document.getElementById('defaultMode'),
       toasts: document.getElementById('toastsMode'),
@@ -55,6 +50,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     showToastsFor: document.getElementById('showToastsFor'),
     alertShowTimeout: document.getElementById('alertShowTimeout'),
     toastHideTimeout: document.getElementById('toastHideTimeout'),
+    alertTrigger: document.getElementById('alertTrigger'),
+    alertMethod: document.getElementById('alertMethod'),
+    logMethod: document.getElementById('logMethod'),
+    preHook: document.getElementById('preHook'),
+    afterHook: document.getElementById('afterHook'),
     blocks: {
       default: document.querySelectorAll(".default-mode"),
       toasts: document.querySelectorAll(".toasts-mode"),
@@ -152,6 +152,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.toastHideTimeout.value = toastHideTimeout;
   }
 
+  const setAlertTrigger = (alertTrigger) => {
+    elements.alertTrigger.value = alertTrigger;
+  }
+
+  const setAlertMethod = (alertMethod) => {
+    elements.alertMethod.value = alertMethod;
+  }
+
+  const setLogMethod = (logMethod) => {
+    elements.logMethod.value = logMethod;
+  }
+
+  const setPreHook = (preHook) => {
+    elements.preHook.value = preHook;
+  }
+
+  const setAfterHook= (afterHook) => {
+    elements.afterHook.value = afterHook;
+  }
+
   const setInitialValues = () => {
     setIsOnPause(config.isOnPause);
     setIsDisabled(config.isDisabled);
@@ -164,6 +184,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     setShowToastsFor(config.showToastsFor);
     setAlertShowTimeout(config.alertShowTimeout);
     setToastHideTimeout(config.toastHideTimeout);
+    setAlertTrigger(config.alertTrigger);
+    setAlertMethod(config.alertMethod);
+    setLogMethod(config.logMethod);
+    setPreHook(config.preHook);
+    setAfterHook(config.afterHook);
   }
 
   const init = () => {
@@ -255,6 +280,37 @@ document.addEventListener('DOMContentLoaded', async () => {
       let toastHideTimeout = Math.abs(Number(e.target.value)) || null;
       setToastHideTimeout(toastHideTimeout);
       setConfig({toastHideTimeout});
+    }
+
+    elements.alertTrigger.onchange = (e) => {
+      let alertTrigger = (e.target.value);
+      alertTrigger = alertTrigger?.replace(/[^\w\s]/gi, '')  || null;
+      setAlertTrigger(alertTrigger);
+      setConfig({alertTrigger});
+    }
+
+    elements.alertMethod.onchange = (e) => {
+      let alertMethod = (e.target.value) || "alert";
+      setAlertMethod(alertMethod);
+      setConfig({alertMethod});
+    }
+
+    elements.logMethod.onchange = (e) => {
+      let logMethod = (e.target.value) || "info";
+      setLogMethod(logMethod);
+      setConfig({logMethod});
+    }
+
+    elements.preHook.onchange = (e) => {
+      const preHook = e.target.value || null;
+      setPreHook(preHook);
+      setConfig({preHook});
+    }
+
+    elements.afterHook.onchange = (e) => {
+      let afterHook = (e.target.value) || null;
+      setAfterHook(afterHook);
+      setConfig({afterHook});
     }
   }
 
