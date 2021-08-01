@@ -230,6 +230,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const init = () => {
     setInitialValues();
     
+    window.addEventListener('click', (e) => {
+      if(e.target.href !== undefined){
+        chrome.tabs.create({url: e.target.href})
+      }
+    })
+
     // add handlers
     elements.header.resetConfigButton.onclick = async () => {
       await Config.resetConfig();
