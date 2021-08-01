@@ -1,22 +1,11 @@
 import {Config} from './config.js';
-
-const DEFULT_CONFIG = {
-  allowlist: [],
-  blockList: [],
-}
-const APP_MODES = ["default", "toasts", "simple"];
-const REDEFINED_METHODS_LIST = ["log", "warn", "info", "error", "table"];
-const RESERVED_WORDS = [
-  "abstract", "arguments", "await", "boolean", "break", "byte", "case", "catch", "char", 
-  "class", "const", "continue", "debugger", "default", "delete", "do", "double", "else", 
-  "enum", "eval", "export", "extends", "false", "final", "finally", "float", "for", 
-  "function", "goto", "if", "implements", "import", "in", "instanceof", "int", "interface", 
-  "let", "long", "native", "new", "null", "package", "private", "protected", "public", "return", 
-  "short", "static", "super", "switch", "synchronized", "this", "throw", "throws", "transient", 
-  "true", "try", "typeof", "var", "void", "volatile", "while", "with", "yield"
-];
+import {
+  APP_MODES, REDEFINED_METHODS_LIST, RESERVED_WORDS,
+  DEFULT_CONFIG, CONFIG_KEY
+} from './constants.js'
 
 document.addEventListener('DOMContentLoaded', async () => {
+  Config.init(DEFULT_CONFIG, CONFIG_KEY);
   let config = await Config.getConfig();
   window.cosnoleAlertConfig = config;
 
@@ -98,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       block.classList.remove("disabled")
     );
   }
-  
+
   const addChnageModeHandlers = () => {
     APP_MODES.map((mode) => 
       elements.mode[mode].onclick = async () => {
@@ -113,7 +102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       elements.redefinedMethods[methodName].checked = redefinedMethods.includes(methodName)
     );
   }
-  
+
   const addChnageRedefinedMethodsHandlers = () => {
     REDEFINED_METHODS_LIST.map((method) => 
       elements.redefinedMethods[method].onclick = async () => {
@@ -229,7 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const init = () => {
     setInitialValues();
-    
+
     window.addEventListener('click', (e) => {
       if(e.target.href !== undefined){
         chrome.tabs.create({url: e.target.href})
@@ -248,15 +237,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       setIsOnPause(!config.isOnPause);
       setConfig({isOnPause: !config.isOnPause});
     }
-    
+
     elements.header.disableButton.onclick = () => {
       setIsDisabled(!config.isDisabled);
       setConfig({isDisabled: !config.isDisabled});
     }
-    
+
     addChnageModeHandlers();
     addChnageRedefinedMethodsHandlers();
-    
+
     elements.customMethods.alert.onclick = () => {
       let customMethods = config.customMethods;
       if (customMethods.includes("alert")) {
