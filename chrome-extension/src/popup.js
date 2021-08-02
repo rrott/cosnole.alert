@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     alertShowTimeout: document.getElementById('alertShowTimeout'),
     toastHideTimeout: document.getElementById('toastHideTimeout'),
     alertTrigger: document.getElementById('alertTrigger'),
+    alertRegexp: document.getElementById('alertRegexp'),
     alertMethod: document.getElementById('alertMethod'),
     logMethod: document.getElementById('logMethod'),
     preHook: document.getElementById('preHook'),
@@ -145,6 +146,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.alertTrigger.value = alertTrigger;
   }
 
+  const setAlertRegexp = (alertRegexp) => {
+    elements.alertRegexp.value = alertRegexp;
+  }
+
   const setAlertMethod = (alertMethod) => {
     elements.alertMethod.value = alertMethod;
   }
@@ -195,6 +200,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setAlertShowTimeout(config.alertShowTimeout);
     setToastHideTimeout(config.toastHideTimeout);
     setAlertTrigger(config.alertTrigger);
+    setAlertRegexp(config.alertRegexp);
     setAlertMethod(config.alertMethod);
     setLogMethod(config.logMethod);
     setPreHook(config.preHook);
@@ -311,6 +317,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       alertTrigger = alertTrigger?.replace(/[^\w\s]/gi, '')  || null;
       setAlertTrigger(alertTrigger);
       setConfig({alertTrigger});
+    }
+
+    elements.alertRegexp.onchange = (e) => {
+      let alertRegexp = (e.target.value);
+      setAlertRegexp(alertRegexp);
+      setConfig({alertRegexp});
     }
 
     elements.alertMethod.onchange = (e) => {

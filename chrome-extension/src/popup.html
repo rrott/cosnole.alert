@@ -185,7 +185,7 @@
           <div class="settings">
 
             <div class="settings-item default-mode">
-              <span class="settings-item-title">Trigger to call alert:</span>
+              <span class="settings-item-title">Trigger to show alert/toast:</span>
               <span class="settings-item-value">
                 <div></div>
                 <input
@@ -198,7 +198,20 @@
             </div>
 
             <div class="settings-item default-mode">
-              <span class="settings-item-title">Method to use to alert:</span>
+              <span class="settings-item-title">Regexp to show alert/toast:</span>
+              <span class="settings-item-value">
+                <div></div>
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="e.g.: TODO\w?"
+                  id="alertRegexp"
+                />
+              </span>
+            </div>
+
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Method to use as alert:</span>
               <span class="settings-item-value">
                 <div></div>
                 <select class="select" size="1" id="alertMethod">
@@ -227,7 +240,7 @@
                 pre-hook
                 <textarea 
                   placeholder="anonymous function to be run before alert() is called"
-                  rows="3" cols="63" name="text"
+                  rows="2" cols="63" name="text"
                   id="afterHook"
                 ></textarea>
               </span>
@@ -238,7 +251,7 @@
                 after-hook
                 <textarea 
                   placeholder="anonymous function to be run after alert() is called"
-                  rows="3" cols="63" name="text"
+                  rows="2" cols="63" name="text"
                   id="preHook"
                 ></textarea>
               </span>

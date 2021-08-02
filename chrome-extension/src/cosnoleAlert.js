@@ -83,12 +83,26 @@ const cosnoleAlert =  (encodedConfig) => {
   }
 
   const customConsoleAlert = ({methodName, args}) => {
-    const isShowAlert = !window.cosnoleAlertConfig?.alertTrigger || args[0] === window.cosnoleAlertConfig?.alertTrigger;
-    const preHook = new Function("params", window.cosnoleAlertConfig?.preHook);
-    const afterHook = new Function("params", window.cosnoleAlertConfig?.afterHook);
     const isRunPreHook = !!window.cosnoleAlertConfig?.preHook;
     const isRunAfterHook = !!window.cosnoleAlertConfig?.afterHook;
-    
+    const preHook = new Function("{methodName, args}", window.cosnoleAlertConfig?.preHook || "");
+    const afterHook = new Function("{methodName, args}", window.cosnoleAlertConfig?.afterHook || "");
+    let isShowAlert = true; 
+
+    if (!!window.cosnoleAlertConfig?.alertTrigger) {
+      isShowAlert = args[0] === window.cosnoleAlertConfig?.alertTrigger;
+    }
+    if (!!window.cosnoleAlertConfig?.alertRegexp) {
+      const regex = new RegExp(window.cosnoleAlertConfig?.alertRegexp, 'i');
+      let isRegexpTriggered = false;
+      args.map((arg) => {
+        const argString = JSON.stringify(arg);
+        isRegexpTriggered = isRegexpTriggered || regex.test(argString);
+      })
+      isShowAlert = isRegexpTriggered;
+    }
+
+
     originalConsoleObject[methodName] && 
       originalConsoleObject[methodName](...args);
 

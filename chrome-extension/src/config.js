@@ -5,7 +5,8 @@ class Config {
     isOnPause: false,         // if true, console object is redefined but no alerts are triggered
     alertShowTimeout: null,   // sleep before triggering alert
     toastHideTimeout: null,   // auto-hide toasts
-    alertTrigger: "",         // custom "stop-word" that triggers the alert
+    alertTrigger: null,       // custom "stop-word"(first param) that triggers the alert
+    alertRegexp: null,        // custom regexp that triggers the alert
     alertMethod: "alert",     // "alert", "promt" or "confirm"
     logMethod: "warn",        // "log", "warn", "info" or "error"
     showToastsFor: "all",     // "all", "none", "redefined", "custom"
