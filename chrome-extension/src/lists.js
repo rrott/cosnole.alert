@@ -4,8 +4,8 @@ class Lists {
     allowList: [],
     blockList: [],
     localhosts: [
-    	"127.0.0.1",
-    	"localhost"
+      "127.0.0.1",
+      "localhost"
     ]
   }
 
@@ -30,22 +30,22 @@ class Lists {
     });
   }
 
-  static getList = (listType) => {
+  static getList = (type) => {
     return this.promisizer((resolve, reject) => {
       chrome.storage.local.get([this.LISTS_KEY], (result) => {
         if (chrome.runtime.lastError)
           reject(chrome.runtime.lastError);
-        const list = result[this.LISTS_KEY][listType] ?? [];
+        const list = result[this.LISTS_KEY][type] ?? [];
         resolve(list);
       });
     });
   }
 
-  static addToList = async (listType, data) => {
+  static addToList = async (type, data) => {
     const lists = await this.getLists();
     const updatedLists = {
-    	...lists,
-    	[listType]: [...lists[listType], ...data],
+      ...lists,
+      [type]: [...lists[type], ...data],
     }
 
     return this.promisizer((resolve, reject) => {

@@ -15,7 +15,7 @@
       "matches": ["<all_urls>"],
       "run_at": "document_start",
       "all_frames": true,
-      "js": ["src/config.js", "src/lists.js", "src/index.js"],
+      "js": ["src/config.js", "src/lists.js", "src/history.js", "src/index.js"],
       "css": ["src/toaster.css"]
     }
   ],
@@ -51,6 +51,7 @@
       "src/cosnoleToast.js",
       "src/cosnoleAlert.js",
       "src/lists.js",
+      "src/history.js",
       "src/config.js",
       "src/toaster.js"
     ],

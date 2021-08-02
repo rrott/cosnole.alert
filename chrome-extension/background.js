@@ -2,9 +2,9 @@ importScripts('src/config.js');
 
 chrome.runtime.onInstalled.addListener(async () => {
   const config = await Config.getDefultConfig();
-  chrome.storage.sync.set({config});
+  chrome.storage.sync.set({cosnoleAlertHistory: config});
   const lists = await Lists.getDefultLists();
-  chrome.storage.sync.set({lists});
+  chrome.storage.sync.set({cosnoleAlertLists: lists});
 });
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
