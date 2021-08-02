@@ -94,9 +94,9 @@ const cosnoleAlert =  (encodedConfig) => {
 
     if (isShowAlert) {
       if (!window.cosnoleAlertConfig?.isOnPause) {
-      	isRunPreHook && preHook({methodName, args});
+      	isRunPreHook && preHook(methodName);
         showMessage({methodName: methodName || window.cosnoleAlertConfig?.logMethod, args});
-      	isRunAfterHook && afterHook({methodName, args});
+      	isRunAfterHook && afterHook(methodName);
       }
     }
   }
