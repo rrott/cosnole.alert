@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     alertTrigger: document.getElementById('alertTrigger'),
     alertRegexp: document.getElementById('alertRegexp'),
     alertMethod: document.getElementById('alertMethod'),
-    logMethod: document.getElementById('logMethod'),
+    logMethod: document.getElementById('consoleLogMethod'),
     preHook: document.getElementById('preHook'),
     afterHook: document.getElementById('afterHook'),
     lists: {
