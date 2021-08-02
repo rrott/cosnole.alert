@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  let lists = await Lists.getLists();
   let config = await Config.getConfig();
-  window.cosnoleAlertConfig = config;
 
   const elements = {
     header: {
       pauseButton: document.getElementById('pauseButton'),
-      disableButton: document.getElementById('disableButton'),
       reloadPageButton: document.getElementById('reloadPageButton'),
       resetConfigButton: document.getElementById('resetConfigButton'),
     },
@@ -58,16 +57,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.header.reloadPageButton.className = "buttons__reload_active";
   }
 
-  const setIsOnPause = (isOnPause) => {
-    const className = isOnPause ? 'buttons__pause_active' : 'buttons__pause';
-    elements.header.pauseButton.innerHTML = isOnPause ? "[paused]" : "[ pause ]";
-    elements.header.pauseButton.className = className;
+  const addToList = async (listType, data) => {
+    lists[listType] = data;
+    await Lists.addToList(listType, data);
+    elements.header.reloadPageButton.className = "buttons__reload_active";
   }
 
-  const setIsDisabled = (isDisabled) => {
-    const className = isDisabled ? 'buttons__disable_active' : 'buttons__disable';
-    elements.header.disableButton.innerHTML = isDisabled ? "[disabled]" : "[disable]";
-    elements.header.disableButton.className = className;
+  const setIsOnPause = (isOnPause) => {
+    const className = isOnPause ? 'buttons__pause_active' : 'buttons__pause';
+    elements.header.pauseButton.innerHTML = isOnPause ? "[paused]" : "[pause]";
+    elements.header.pauseButton.className = className;
   }
 
   const setMode = (mode) => {
@@ -186,7 +185,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const setInitialValues = () => {
     setIsOnPause(config.isOnPause);
-    setIsDisabled(config.isDisabled);
     setMode(config.mode);
     setRedefinedMethods(config.redefinedMethods);
     setCustomAlertMethod(config.customMethods);
@@ -201,8 +199,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     setLogMethod(config.logMethod);
     setPreHook(config.preHook);
     setAfterHook(config.afterHook);
-    setAllowList(config.allowList);
-    setBlockList(config.blockList);
+    setAllowList(lists.allowList.join("\n"));
+    setBlockList(lists.blockList.join("\n"));
     setListOptions({
       isUseAllowList: config.isUseAllowList,
       isUseBlockList: config.isUseBlockList,
@@ -223,7 +221,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.header.resetConfigButton.onclick = async () => {
       await Config.resetConfig();
       config = await Config.getConfig();
-      window.cosnoleAlertConfig = config;
       setInitialValues();
     }
 
@@ -236,11 +233,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.header.pauseButton.onclick = () => {
       setIsOnPause(!config.isOnPause);
       setConfig({isOnPause: !config.isOnPause});
-    }
-
-    elements.header.disableButton.onclick = () => {
-      setIsDisabled(!config.isDisabled);
-      setConfig({isDisabled: !config.isDisabled});
     }
 
     addChnageModeHandlers();
@@ -347,13 +339,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.lists.allowList.onchange = (e) => {
       let allowList = (e.target.value) || null;
       setAllowList(allowList);
-      setConfig({allowList});
+      addToList("allowList", allowList.split("\n"));
     }
 
     elements.lists.blockList.onchange = (e) => {
       let blockList = (e.target.value) || null;
       setBlockList(blockList);
-      setConfig({blockList});
+      addToList("blockList", blockList.split("\n"));
     }
 
     elements.lists.isUseAllowList.onclick = () => {

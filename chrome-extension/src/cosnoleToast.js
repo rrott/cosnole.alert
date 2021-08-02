@@ -2,7 +2,7 @@ import {initToaster} from './toaster.js';
 
 const cosnoleToast =  (encodedConfig) => {
   window.cosnoleAlertConfig = JSON.parse(atob(encodedConfig));
-  if (window.cosnoleAlertConfig?.isDisabled) {return null};
+  if (window.cosnoleAlertConfig?.isOnPause) {return null};
 
   const Toaster = initToaster();
   const originalConsoleObject = {
@@ -87,20 +87,18 @@ const cosnoleToast =  (encodedConfig) => {
       originalConsoleObject[methodName](...args);
 
     if (isShowAlert) {
-      if (!window.cosnoleAlertConfig?.isOnPause) {
-      	isRunPreHook && window.cosnoleAlertConfig?.preHook({methodName, args});
-        showMessage({methodName: methodName || window.cosnoleAlertConfig?.logMethod, args});
-      	isRunAfterHook &&  window.cosnoleAlertConfig?.afterHook({methodName, args});
-      }
+      isRunPreHook && window.cosnoleAlertConfig?.preHook({methodName, args});
+      showMessage({methodName: methodName || window.cosnoleAlertConfig?.logMethod, args});
+      isRunAfterHook &&  window.cosnoleAlertConfig?.afterHook({methodName, args});
     }
   }
 
   const redefineConsoleMethod = ({methodName, args}) => {
     if (window.cosnoleAlertConfig?.alertShowTimeout) {
       setTimeout(
-      	customConsoleAlert,
-      	window.cosnoleAlertConfig?.alertShowTimeout * 1000,
-      	{methodName, args}
+        customConsoleAlert,
+        window.cosnoleAlertConfig?.alertShowTimeout * 1000,
+        {methodName, args}
       );
     } else {
       customConsoleAlert({methodName, args});

@@ -6,7 +6,7 @@ const NONOBJECT_TYPES = ['number', "bigint", 'string', 'boolean', 'undefined'];
 
 const cosnoleAlert =  (encodedConfig) => {
   window.cosnoleAlertConfig = JSON.parse(atob(encodedConfig));
-  if (window.cosnoleAlertConfig?.isDisabled) {return null};
+  if (window.cosnoleAlertConfig?.isOnPause) {return null};
 
   const Toaster = initToaster();
   const originalConsoleObject = {
@@ -93,11 +93,9 @@ const cosnoleAlert =  (encodedConfig) => {
       originalConsoleObject[methodName](...args);
 
     if (isShowAlert) {
-      if (!window.cosnoleAlertConfig?.isOnPause) {
-      	isRunPreHook && preHook(methodName);
-        showMessage({methodName: methodName || window.cosnoleAlertConfig?.logMethod, args});
-      	isRunAfterHook && afterHook(methodName);
-      }
+      isRunPreHook && preHook(methodName);
+      showMessage({methodName: methodName || window.cosnoleAlertConfig?.logMethod, args});
+      isRunAfterHook && afterHook(methodName);
     }
   }
 

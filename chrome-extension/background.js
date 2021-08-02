@@ -3,6 +3,8 @@ importScripts('src/config.js');
 chrome.runtime.onInstalled.addListener(async () => {
   const config = await Config.getDefultConfig();
   chrome.storage.sync.set({config});
+  const lists = await Lists.getDefultLists();
+  chrome.storage.sync.set({lists});
 });
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
