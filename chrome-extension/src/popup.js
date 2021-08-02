@@ -228,6 +228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
       });
+      elements.header.reloadPageButton.className = "buttons__reload";
     }
 
     elements.header.pauseButton.onclick = () => {
