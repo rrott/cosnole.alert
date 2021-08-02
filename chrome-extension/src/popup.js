@@ -1,11 +1,4 @@
-import {Config} from './config.js';
-import {
-  APP_MODES, REDEFINED_METHODS_LIST, RESERVED_WORDS,
-  DEFULT_CONFIG, CONFIG_KEY
-} from './constants.js'
-
 document.addEventListener('DOMContentLoaded', async () => {
-  Config.init(DEFULT_CONFIG, CONFIG_KEY);
   let config = await Config.getConfig();
   window.cosnoleAlertConfig = config;
 

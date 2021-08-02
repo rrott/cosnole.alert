@@ -1,5 +1,4 @@
 import {initToaster} from './toaster.js';
-import {DEFAULT_LOG_METHOD, DEFAULT_ALERT_METHOD} from './constants.js';
 
 const cosnoleToast =  (encodedConfig) => {
   window.cosnoleAlertConfig = JSON.parse(atob(encodedConfig));
@@ -16,7 +15,7 @@ const cosnoleToast =  (encodedConfig) => {
 
   window.cosnoleAlertConfig?.customMethods.map((methodName) =>
     originalConsoleObject[methodName] = console[
-      window.cosnoleAlertConfig?.logMethod || DEFAULT_LOG_METHOD
+      window.cosnoleAlertConfig?.logMethod || "info"
     ]
   );
 
@@ -41,7 +40,7 @@ const cosnoleToast =  (encodedConfig) => {
 
   const showAlert = ({methodName, args}) => {
     const message = formatAlertMessage({methodName, args});
-    window[window.cosnoleAlertConfig?.alertMethod || DEFAULT_ALERT_METHOD](message);
+    window[window.cosnoleAlertConfig?.alertMethod || "alert"](message);
   }
  
   const showToast = ({methodName, args}) => {
