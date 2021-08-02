@@ -95,7 +95,7 @@ const initToaster = () => {
     toast.appendChild(closeButton);
     toast.appendChild(messageContainer);
     
-    document.getElementsByClassName('cosnole-alert-toasts')[0].appendChild(toast);
+    toastContainer.appendChild(toast);
     
     if (timeout) {setTimeout(toast?.hide, timeout)}
     
