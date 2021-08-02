@@ -1,12 +1,20 @@
 document.addEventListener('DOMContentLoaded', async () => {
   let lists = await Lists.getLists();
   let config = await Config.getConfig();
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const url = new URL(tab.url);
+  const hostname = url.hostname;
 
   const elements = {
+    tabs: {
+      lists: document.getElementById('lists'),
+    },
     header: {
       pauseButton: document.getElementById('pauseButton'),
       reloadPageButton: document.getElementById('reloadPageButton'),
       resetConfigButton: document.getElementById('resetConfigButton'),
+      addToAllowListButton: document.getElementById('addToAllowListButton'),
+      addToBlockListButton: document.getElementById('addToBlockListButton'),
     },
     mode: {
       default: document.getElementById('defaultMode'),
@@ -68,6 +76,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     const className = isOnPause ? 'buttons__pause_active' : 'buttons__pause';
     elements.header.pauseButton.innerHTML = isOnPause ? "[paused]" : "[pause]";
     elements.header.pauseButton.className = className;
+  }
+
+  const setAllowListButton = () => {
+    if (!!elements.header.addToAllowListButton) {
+      const isInList = lists.allowList.includes(hostname);
+      const className = isInList ? 'buttons__allow-list_active' : 'buttons__allow-list';
+      elements.header.addToAllowListButton.innerHTML = isInList ? "[remove from allow-list]" : "[add to allow-list]";
+      elements.header.addToAllowListButton.className = className;
+    }
+  }
+
+  const setBlockListButton = () => {
+    if (!!elements.header.addToBlockListButton) {
+      const isInList = lists.blockList.includes(hostname);
+      const className = isInList ? 'buttons__block-list_active' : 'buttons__block-list';
+      elements.header.addToBlockListButton.innerHTML = isInList ? "[remove from block-list]" : "[add to block-list]";
+      elements.header.addToBlockListButton.className = className;
+    }
   }
 
   const setMode = (mode) => {
@@ -190,6 +216,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const setInitialValues = () => {
     setIsOnPause(config.isOnPause);
+    setAllowListButton();
+    setBlockListButton();
     setMode(config.mode);
     setRedefinedMethods(config.redefinedMethods);
     setCustomAlertMethod(config.customMethods);
@@ -240,6 +268,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     elements.header.pauseButton.onclick = () => {
       setIsOnPause(!config.isOnPause);
       setConfig({isOnPause: !config.isOnPause});
+    }
+
+    elements.header.addToAllowListButton.onclick = () => {
+      let allowList = lists.allowList;
+      if (allowList.includes(hostname)) {
+        allowList = allowList.filter((m) => m !== hostname);
+      } else {
+        allowList = [...allowList, hostname];
+      }
+
+      setAllowList(allowList.join('\n'));
+      addToList("allowList", allowList);
+      setAllowListButton();
+      elements.tabs.lists.checked = true;
+    }
+
+    elements.header.addToBlockListButton.onclick = () => {
+      let blockList = lists.blockList;
+      if (blockList.includes(hostname)) {
+        blockList = blockList.filter((m) => m !== hostname);
+      } else {
+        blockList = [...blockList, hostname];
+      }
+
+      setBlockList(blockList.join('\n'));
+      addToList("blockList", blockList);
+      setBlockListButton();
+      elements.tabs.lists.checked = true;
     }
 
     addChnageModeHandlers();

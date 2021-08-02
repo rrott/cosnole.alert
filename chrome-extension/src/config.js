@@ -1,6 +1,6 @@
 class Config {
   static CONFIG_KEY = "cosnoleAlertConfig";
-  static DEFULT_CONFIG = {
+  static DEFAULT_CONFIG = {
     mode: "default",          // ["default", "toasts", "simple"]
     isOnPause: false,         // if true, console object is redefined but no alerts are triggered
     alertShowTimeout: null,   // sleep before triggering alert
@@ -29,14 +29,14 @@ class Config {
     return promise;
   }
 
-  static getDefultConfig = () => DEFULT_CONFIG;
+  static getDefultConfig = () => this.DEFAULT_CONFIG;
 
   static getConfig = () => {
     return this.promisizer((resolve, reject) => {
       chrome.storage.local.get([this.CONFIG_KEY], (result) => {
         if (chrome.runtime.lastError)
           reject(chrome.runtime.lastError);
-        const config = result[this.CONFIG_KEY] ?? this.DEFULT_CONFIG;
+        const config = result[this.CONFIG_KEY] ?? this.DEFAULT_CONFIG;
         resolve(config);
       });
     });
@@ -57,10 +57,10 @@ class Config {
 
   static resetConfig = () => {
     return this.promisizer((resolve, reject) => {
-      chrome.storage.local.set({[this.CONFIG_KEY]: this.DEFULT_CONFIG}, () => {           
+      chrome.storage.local.set({[this.CONFIG_KEY]: this.DEFAULT_CONFIG}, () => {           
         if (chrome.runtime.lastError)
           reject(chrome.runtime.lastError);
-        resolve(this.DEFULT_CONFIG);
+        resolve(this.DEFAULT_CONFIG);
       });
     });
   }

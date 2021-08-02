@@ -10,14 +10,18 @@
   </head>
   <body>
     <div class="buttons">
-      <span class="buttons__pause" id="pauseButton">[pause]</span>
       <span class="buttons__reload" id="reloadPageButton" >[reload page]</span>
+      <span class="buttons__pause" id="pauseButton">[pause]</span>
     </div>
 
     <div class="header">
-
-      <span class="buttons__disable" id="resetConfigButton">[reset to defaults]</span>
-      <div class="header-line" ></div>
+      <div class="header__buttons">
+        <span class="buttons__disable" id="resetConfigButton">[reset to defaults]</span>
+        <div class="header__buttons__lists">
+          <span class="buttons__list" id="addToAllowListButton">[add to allow-list]</span>
+          <span class="buttons__list" id="addToBlockListButton">[add to block-list]</span>
+        </div>
+      </div>
     </div>
     <div class="container">
       <div class="tabs">
@@ -381,19 +385,25 @@
       position: fixed;
       top: 2.5rem;
       left: 1rem;
+      padding-bottom: 0.5rem;
+            border-bottom: 1px solid lightgray;
+    }
+    .header__buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      width: 33rem;
+    }
+    .header__buttons__lists {
+      width:  20rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
     }
     .mode-radio .checkbox{
       cursor:  pointer;
       font-size: medium;
-    }
-    .header-line {
-      height: 1rem;
-      width: 33rem;
-      margin-top: 0.5rem;
-      border-bottom: 1px solid lightgray;
-      position: fixed;
-      top: 2.5rem;
-      left: 1rem;
     }
 
     .footer-line {
@@ -438,21 +448,62 @@
       cursor: pointer;
       top: 0;
       right: 0.5rem;
-      width: 7rem;
+      width: 9rem;
       height: 2rem;
       display: flex;
-      align-items: flex-end;
-      flex-direction: column;
-      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: row;
+      justify-content: flex-end;
       padding: 0.5rem;
     }
     .buttons__pause {
+      padding-left: 0.5rem;
       cursor: pointer;
       color: darkgray;
     }
      .buttons__pause:hover {
       color: orange;
     }
+    .buttons__pause_active {
+      cursor: pointer;
+      font-weight: bold;
+      color: orange;
+    }
+    .buttons__allow-list {
+      padding-left: 0.5rem;
+      cursor: pointer;
+      color: darkgray;
+    }
+    .buttons__allow-list:hover {
+      color: green;
+    }
+    .buttons__allow-list_active {
+      padding-left: 0.5rem;
+      cursor: pointer;
+      color: darkgray;
+    }
+    .buttons__allow-list_active:hover {
+      padding-left: 0.5rem;
+      color: red;
+    }
+    .buttons__block-list {
+      padding-left: 0.5rem;
+      cursor: pointer;
+      color: darkgray;
+    }
+    .buttons__block-list:hover {
+      color: red;
+    }
+    .buttons__block-list_active {
+      padding-left: 0.5rem;
+      cursor: pointer;
+      color: darkgray;
+    }
+    .buttons__block-list_active:hover {
+      padding-left: 0.5rem;
+      color: green;
+    }
+
     .buttons__pause_active {
       cursor: pointer;
       font-weight: bold;
