@@ -3,6 +3,10 @@ class Lists {
   static EMPTY_LISTS = {
     allowList: [],
     blockList: [],
+    localhosts: [
+    	"127.0.0.1",
+    	"localhost"
+    ]
   }
 
   static promisizer = (callback) => {
