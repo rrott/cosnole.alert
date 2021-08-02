@@ -3,10 +3,6 @@ class Lists {
   static EMPTY_LISTS = {
     allowList: [],
     blockList: [],
-    localhosts: [
-      "127.0.0.1",
-      "localhost"
-    ]
   }
 
   static promisizer = (callback) => {
@@ -45,7 +41,7 @@ class Lists {
     const lists = await this.getLists();
     const updatedLists = {
       ...lists,
-      [type]: [...lists[type], ...data],
+      [type]: [...data],
     }
 
     return this.promisizer((resolve, reject) => {

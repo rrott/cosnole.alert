@@ -19,7 +19,6 @@
         <div>
           <div class="buttons">
             <span class="buttons__pause" id="pauseButton">[ pause ]</span>
-            <span class="buttons__disable" id="disableButton">[disable]</span>
             <span class="buttons__disable" id="resetConfigButton">[reset to defaults]</span>
           </div>
           <div class="settings">
@@ -177,7 +176,7 @@
           <div class="settings">
 
             <div class="settings-item default-mode">
-              <span class="settings-item-title">Trigger to call alert:</span>
+              <span class="settings-item-title">Trigger to show alert/toast:</span>
               <span class="settings-item-value">
                 <div></div>
                 <input
@@ -185,6 +184,19 @@
                   class="input"
                   placeholder="e.g.: 42 or oklahoma"
                   id="alertTrigger"
+                />
+              </span>
+            </div>
+
+            <div class="settings-item default-mode">
+              <span class="settings-item-title">Regexp to show alert/toast:</span>
+              <span class="settings-item-value">
+                <div></div>
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="e.g.: TODO\w?"
+                  id="alertRegexp"
                 />
               </span>
             </div>
@@ -265,7 +277,7 @@
                 allow-list
                 <textarea
                   class="disabled"
-                  placeholder="e.g.: http://localhost:8080"
+                  placeholder="e.g.: localhost"
                   rows="10" cols="65" name="text"
                   id="allowList"
                 ></textarea>
@@ -277,7 +289,7 @@
                 block-list
                 <textarea
                   class="disabled"
-                  placeholder="e.g.: http://127.0.0.1:8080"
+                  placeholder="e.g.: google.com"
                   rows="10" cols="65" name="text"
                   id="blockList"
                 ></textarea>
