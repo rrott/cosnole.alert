@@ -5,7 +5,6 @@
   right: 8px;
   min-width: 400px;
   max-width: 400px;
-  pointer-events: none;
   z-index: 1000000;
   font-size: 12px !important;
   font-weight: normal !important;
@@ -21,15 +20,13 @@
 .cosnole-alert-toast {
   all: revert;
   opacity: 0.95;
-  padding:  10px;
-  margin:  10px;
-  line-height: 14px;
+  padding:  8px;
+  margin:  8px;
+  line-height: 12px;
   position: relative;
-  /*border-radius: 6px;*/
   display: flex;
   align-items: center;
   width: calc(100% - 28px);
-  position: relative;
   box-sizing: border-box;
   transition-timing-function: ease;
   animation-duration: .3s;
@@ -66,13 +63,13 @@
 .cosnole-alert-toast__message {
   all: revert;
   width: calc(100% - 10px);
-  white-space: pre-wrap !important; 
-  word-break: break-all !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
   margin: 0!important;
   font-size: 12px !important;
   border: none !important;
   padding: 0 !important;
-  line-height: 16px !important;
+  line-height: 14px !important;
   background-color: transparent !important;
 }
 
@@ -128,7 +125,7 @@
   margin-left:  10px;
   border: 1px solid lightgrey;
   /*background-color: lightgrey !important;*/
-  white-space: pre-wrap !important; 
+  white-space: pre-wrap !important;
   word-break: break-all !important;
   font-size: 12px !important;
   line-height: 16px !important;

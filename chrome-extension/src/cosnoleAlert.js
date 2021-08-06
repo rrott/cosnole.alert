@@ -6,7 +6,7 @@ const NONOBJECT_TYPES = ['number', "bigint", 'string', 'boolean', 'undefined'];
 
 const cosnoleAlert =  (encodedConfig) => {
   window.cosnoleAlertConfig = JSON.parse(atob(encodedConfig));
-  if (window.cosnoleAlertConfig?.isOnPause) {return null};
+  if (window.cosnoleAlertConfig?.isOnPause) {return null}
 
   const Toaster = initToaster();
   const originalConsoleObject = {
@@ -17,11 +17,10 @@ const cosnoleAlert =  (encodedConfig) => {
     table: console.table,
   };
 
-  window.cosnoleAlertConfig?.customMethods.map((methodName) =>
-    originalConsoleObject[methodName] = console[
-      window.cosnoleAlertConfig?.logMethod || DEFAULT_LOG_METHOD
-    ]
-  );
+  window.cosnoleAlertConfig?.customMethods.map((methodName) => {
+    const logMethod = window.cosnoleAlertConfig?.logMethod || DEFAULT_LOG_METHOD;
+    originalConsoleObject[methodName] = console[logMethod];
+  });
 
   const formatAlertMessage = ({methodName, args}) => {
     window.cosnoleAlertConfig?.alertTrigger && args.shift();
@@ -32,7 +31,7 @@ const cosnoleAlert =  (encodedConfig) => {
     window.cosnoleAlertConfig?.alertTrigger && args.shift();
     const messages = args.map((arg) => {
       return {
-        arg, 
+        arg,
         type: typeof arg,
         parsed: JSON.stringify(arg),
         isNonObject: NONOBJECT_TYPES.includes(typeof arg),
@@ -43,13 +42,17 @@ const cosnoleAlert =  (encodedConfig) => {
 
   const showAlert = ({methodName, args}) => {
     const message = formatAlertMessage({methodName, args});
-    window[window.cosnoleAlertConfig?.alertMethod || DEFAULT_ALERT_METHOD](message);
+    try {
+      window[window.cosnoleAlertConfig?.alertMethod || DEFAULT_ALERT_METHOD](message);
+    } catch (error) {
+      originalConsoleObject?.error("🔺", methodName, error);
+    }
   }
- 
+
   const showToast = ({methodName, args}) => {
     const message = formatToastMessage({methodName, args});
     Toaster.add({
-      message, methodName, 
+      message, methodName,
       timeout: window.cosnoleAlertConfig?.toastHideTimeout * 1000,
     });
   }
@@ -57,13 +60,13 @@ const cosnoleAlert =  (encodedConfig) => {
   const showMessage = ({methodName, args}) => {
     const isCustom = window.cosnoleAlertConfig?.customMethods.includes(methodName);
     const isRedefined = window.cosnoleAlertConfig?.redefinedMethods.includes(methodName);
-    
+
     switch (window.cosnoleAlertConfig?.showToastsFor) {
       case "all":
         showToast({methodName, args});
         break;
       case "redefined":
-        isRedefined && showToast({methodName, args}) 
+        isRedefined && showToast({methodName, args})
         break;
       case "custom":
         isCustom && showToast({methodName, args});
@@ -74,7 +77,7 @@ const cosnoleAlert =  (encodedConfig) => {
         showAlert({methodName, args});
         break;
       case "redefined":
-        isRedefined && showAlert({methodName, args}) 
+        isRedefined && showAlert({methodName, args})
         break;
       case "custom":
         isCustom && showAlert({methodName, args});
@@ -83,11 +86,18 @@ const cosnoleAlert =  (encodedConfig) => {
   }
 
   const customConsoleAlert = ({methodName, args}) => {
+    let isShowAlert = true;
     const isRunPreHook = !!window.cosnoleAlertConfig?.preHook;
     const isRunAfterHook = !!window.cosnoleAlertConfig?.afterHook;
     const preHook = new Function("{methodName, args}", window.cosnoleAlertConfig?.preHook);
     const afterHook = new Function("{methodName, args}", window.cosnoleAlertConfig?.afterHook);
-    let isShowAlert = true; 
+    const tryHook = ({hook, methodName, args}) => {
+      try {
+        hook({methodName, args})
+      } catch (error) {
+        originalConsoleObject?.error("🔺", methodName, error);
+      }
+    }
 
     if (!!window.cosnoleAlertConfig?.alertTrigger) {
       isShowAlert = args[0] === window.cosnoleAlertConfig?.alertTrigger;
@@ -103,13 +113,18 @@ const cosnoleAlert =  (encodedConfig) => {
     }
 
 
-    originalConsoleObject[methodName] && 
-      originalConsoleObject[methodName](...args);
+    if (!!originalConsoleObject[methodName]) {
+      try {
+        originalConsoleObject[methodName](...args);
+      } catch (error) {
+        originalConsoleObject?.error("🔺", methodName, error);
+      }
+    }
 
     if (isShowAlert) {
-      isRunPreHook && preHook({methodName, args});
+      isRunPreHook && tryHook({hook: preHook, methodName, args});
       showMessage({methodName: methodName || window.cosnoleAlertConfig?.logMethod, args});
-      isRunAfterHook && afterHook({methodName, args});
+      isRunAfterHook && tryHook({hook: afterHook, methodName, args});
     }
   }
 
@@ -125,9 +140,16 @@ const cosnoleAlert =  (encodedConfig) => {
     }
   }
 
-  [...window.cosnoleAlertConfig?.customMethods, ...window.cosnoleAlertConfig?.redefinedMethods].map((methodName) =>
-    console[methodName] = (...args) => redefineConsoleMethod({args, methodName})
-  )
+  window.console = new Proxy(window.console, {
+    get(target, methodName) {
+      const {customMethods, redefinedMethods} = window.cosnoleAlertConfig;
+      const methodsList = [...customMethods, ...redefinedMethods];
+      if (methodsList.includes(methodName)) {
+        return (...args) => redefineConsoleMethod({args, methodName})
+      }
+      return target[methodName];
+    }
+  });
 
   window.cosnoleAlertConfig?.customGlobalMethods.map((methodName) => {
     if (!(methodName in window)) {
