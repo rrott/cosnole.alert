@@ -5,12 +5,13 @@ const initToaster = () => {
     add: () => {},
   };
 
-  const toastContainer = document.createElement('div');
-  toastContainer.className = 'cosnole-alert-toasts';
-  toastContainer.classList.add('cosnole-alert-toasts_top-right');
-  (document.body || document.documentElement).appendChild(toastContainer);
+  const toastsContainer = document.createElement('div');
+  toastsContainer.className = 'cosnole-alert-toasts';
+  toastsContainer.classList.add('cosnole-alert-toasts_top-right');
+  (document.body || document.documentElement).appendChild(toastsContainer);
 
   Toaster.add = ({message, methodName, timeout}) => {
+    let isActive = true;
     const messageContainer = document.createElement('div');
     const messageTitleContainer = document.createElement('div');
     const messageBodyContainer = document.createElement('div');
@@ -21,17 +22,17 @@ const initToaster = () => {
     const removeToast = () => {
       document.getElementsByClassName('cosnole-alert-toasts')[0].removeChild(toast);
       delete Toaster.toasts[toast.id];
-    }  
+    }
 
     toast.hide = () => {
       toast.classList.add('cosnole-alert-toasts_fade-out');
       toast.addEventListener('animationend', removeToast, false);
     };
 
-    messageContainer.className = 'cosnole-alert-toast__message';
-    messageTitleContainer.className = 'cosnole-alert-toast__message__title';
     messageBodyContainer.className = 'cosnole-alert-toast__message__body';
+    messageTitleContainer.className = 'cosnole-alert-toast__message__title';
     messageTitleContainer.innerHTML = message.title;
+    messageContainer.className = 'cosnole-alert-toast__message';
     messageContainer.appendChild(messageTitleContainer);
     messageContainer.appendChild(messageBodyContainer);
 
@@ -39,7 +40,7 @@ const initToaster = () => {
       const messageObjectTitleContainer = document.createElement('span');
       const messageObjectContainer = document.createElement('pre');
       let isExpanded = false;
-      
+
       messageObjectContainer.className = 'cosnole-alert-toast__message__object';
       messageObjectTitleContainer.className = 'cosnole-alert-toast__message__object-title';
       messageObjectTitleContainer.innerHTML = `[${msg.type}] `;
@@ -94,11 +95,19 @@ const initToaster = () => {
     toast.appendChild(copyButton);
     toast.appendChild(closeButton);
     toast.appendChild(messageContainer);
-    
-    toastContainer.appendChild(toast);
-    
+    messageTitleContainer.onclick = () => {
+      if (isActive) {
+        isActive = false;
+        toast.classList.add("cosnole-alert-toast_active");
+      } else {
+        isActive = true;
+        toast.classList.remove("cosnole-alert-toast_active");
+      }
+    }
+    toastsContainer.appendChild(toast);
+
     if (timeout) {setTimeout(toast?.hide, timeout)}
-    
+
     Toaster.toasts[toast.id] = toast;
     return toast;
   }
