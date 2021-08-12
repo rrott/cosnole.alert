@@ -31,17 +31,6 @@
     </div>
   </div>
 
-  <div class="cosnole-alert__right__logo">
-    <svg width="126px" height="109px" viewBox="0 0 126 109" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
-        <mask id="mask-2" fill="white">
-          <use xlink:href="#path-1"></use>
-        </mask>
-        <path stroke="#000000" stroke-width="2" d="M63,1.99836164 L124.267002,108 L1.73299801,108 L63,1.99836164 Z"></path>
-      </g>
-    </svg>
-  </div>
-
   <div class="cosnole-alert__alert-modal" >
     <div>cosnole.alert says</div>
     <div>1</div>
@@ -65,18 +54,19 @@
           </div>
         </div>
         <div class="cosnole-alert__info">
-          Extension to shows logs, errors and warnings as toast messages to help you catch bugs faster.<br/>
-          Extends browser's console object with<br/> the alert() function.
+          Browser Extension to shows logs, errors and warnings as toast messages to help you catch bugs faster.<br/>
+          It extends browser's console object with the alert() function.
           <div class="cosnole-alert__info__ok-button">Ok</div>
         </div>
         <div class="cosnole-alert__short-info">
+          With <b>"cosnole.alert"</b> you can:
           <ul>
-            <li>reflect console.log() calls in <b>toast messages</b></li>
-            <li>trigger window.<b>alert()</b> on console.<b>log()</b> calls</li>
+            <li>reflect console.log() calls in the <b>toast messages</b></li>
+            <li>trigger window.<b>alert()</b> on all console.<b>log()</b> calls</li>
             <li>use <b>console</b>.alert() instead of <b>window</b>.alert()</li>
             <li>define <b>custom global methods</b> to call alert()</li>
-            <li>use <b>regexp</b> or a "stop-word" to call alert()</li>
-            <li>enable it for localhost only or use <b>allow/block-lists</b></li>
+            <li>use <b>regexp</b> or a <b>"stop-word"</b> to call alert()</li>
+            <li>use <b>allow/block-lists</b> or enable it for <b>localhost</b> only</li>
             <li>use it to see console.log() events called in an <b>iframe</b></li>
           </ul>
         </div>
@@ -88,21 +78,18 @@
     <section class="cosnole-alert__page page-top">
       <div class="cosnole-alert__left-short">
         <div class="cosnole-alert__options">
-
-
-        <div class="cosnole-alert__options__image">
-          <img  src="./images/options-p1.png" />
-        </div>
-        <div class="cosnole-alert__options__image">
-          <img  src="./images/options-p2.png" />
-        </div>
-        <div class="cosnole-alert__options__image">
-          <img  src="./images/options-p3.png" />
-        </div>
-        <div class="cosnole-alert__options__image">
-          <img  src="./images/options-p4.png" />
-        </div>
-
+          <div class="cosnole-alert__options__image">
+            <img  src="./images/options-p1.png" />
+          </div>
+          <div class="cosnole-alert__options__image">
+            <img  src="./images/options-p2.png" />
+          </div>
+          <div class="cosnole-alert__options__image">
+            <img  src="./images/options-p3.png" />
+          </div>
+          <div class="cosnole-alert__options__image">
+            <img  src="./images/options-p4.png" />
+          </div>
         </div>
       </div>
       <div class="cosnole-alert__right-wide">
@@ -116,21 +103,95 @@
         <h5 class="cosnole-alert__modes__title">You can switch the mode depending on your needs and the web-site's configurations</h5>
       </div>
     </section>
-    <section class="cosnole-alert__page page-top">
-      <div class="cosnole-alert__right">
-        <div class="cosnole-alert__info">
+    <section class="cosnole-alert__page page-top cosnole-alert__modes-page">
+      <div class="cosnole-alert__modes__left">
+        <div class="cosnole-alert__modes__info">
           Default mode
         </div>
-      </div>
-      <div class="cosnole-alert__left">
-        <div class="cosnole-alert__info">
-          Toasts Only mode
+        <div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>provides all the features</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>injects script tag onto the page to extend console and window objects</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>can show both alert and toast: simultaneously or separately depending on the called method</span>
+          </div>
+          <hr/>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[-]</span>
+            <span>requires page reload to apply any options' update</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[-]</span>
+            <span>will not work an sites with a good CSP(Content Security Policy) configuration</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[-]</span>
+            <span>may "loose" some events on fast, small or cached website due to the asynchronous nature of JavaScript</span>
+          </div>
         </div>
-        
       </div>
-      <div class="cosnole-alert__right">
-        <div class="cosnole-alert__info">
+      <div class="cosnole-alert__modes__middle">
+        <div class="cosnole-alert__modes__info ">
+          Toasts Only
+        </div>
+        <div>
+          <b>TBD. Not yet implemented...</b>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>does not inject script tag, but instead uses browser's API only</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>works on any website and is not affected by CSP(Content Security Policy)</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>can not "loose" events but will show them with a short delay</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>You do not need to reload the page to pause this extension or to apply any options' update</span>
+          </div>
+          <hr />
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[-]</span>
+            <span>can not extend console or window object to add custom or to modify existent methods</span>
+          </div>
+        </div>
+      </div>
+      <div class="cosnole-alert__modes__right">
+        <div class="cosnole-alert__modes__info ">
           Simple mode
+        </div>
+        <div>
+          <b>simple as a pay:</b>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>injects script tag onto the page to add alert() method to the console object</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[+]</span>
+            <span>most likely will not "loose" events on fast, small or cached website as it's just a one line of JavaScript code</span>
+          </div>
+          <hr />
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[-]</span>
+            <span>implements only one single feature - maps alert() to console.alert() method</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[-]</span>
+            <span>requires page reload to pause it, but in most cases you do not need to pause it at all</span>
+          </div>
+          <div class="cosnole-alert__modes__list">
+            <span class="cosnole-alert__modes__list-title">[-]</span>
+            <span>will not work an sites with a good CSP(Content Security Policy) configuration</span>
+          </div>
         </div>
       </div>
     </section>
@@ -139,9 +200,17 @@
       <div class="cosnole-alert__all">
       </div>
     </section>
-  </section>
 
-
+  <div class="cosnole-alert__right__logo">
+    <svg width="126px" height="109px" viewBox="0 0 126 109" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+          <use xlink:href="#path-1"></use>
+        </mask>
+        <path stroke="#000000" stroke-width="2" d="M63,1.99836164 L124.267002,108 L1.73299801,108 L63,1.99836164 Z"></path>
+      </g>
+    </svg>
+  </div>
 
   </section>
 
