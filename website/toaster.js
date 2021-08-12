@@ -1,6 +1,5 @@
 const initToaster = () => {
   let toastIndex = 0;
-  let activeToastsCount = 0;
   const Toaster = {
     toasts: {},
     add: () => {},
@@ -99,16 +98,10 @@ const initToaster = () => {
     messageTitleContainer.onclick = () => {
       if (isActive) {
         isActive = false;
-        activeToastsCount -= 1;
         toast.classList.add("cosnole-alert-toast_active");
-        toastsContainer.classList.add("cosnole-alert-toasts_active");
       } else {
         isActive = true;
-        activeToastsCount += 1;
         toast.classList.remove("cosnole-alert-toast_active");
-        if (activeToastsCount === 0) {
-          toastsContainer.classList.remove("cosnole-alert-toasts_active");
-        }
       }
     }
     toastsContainer.appendChild(toast);

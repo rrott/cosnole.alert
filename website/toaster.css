@@ -5,7 +5,7 @@
   right: 8px;
   min-width: 400px;
   max-width: 400px;
-  z-index: 1000000;
+  z-index: 15;
   font-size: 12px !important;
   font-weight: normal !important;
   font-family:  monospace;
@@ -13,20 +13,17 @@
   max-height: calc(100vh - 64px);
   pointer-events: all;
   padding-top: 32px;
-  backdrop-filter: blur(4px);
   -webkit-mask-image: -webkit-gradient(linear, right 7%, right top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
 }
-.cosnole-alert-toasts_active {
-  backdrop-filter: blur(0) !important;
-}
 .cosnole-alert-toast_active {
-  opacity: 0.4 !important;
+  opacity: 0.2 !important;
 }
 .cosnole-alert-toast {
   opacity: 0.95;
   all: revert;
-  padding: 8px;
-  margin: 8px 8px 9px;
+  padding:  8px;
+  margin:  8px;
+  margin-bottom: 12px;
   line-height: 12px;
   position: relative;
   display: flex;
@@ -34,7 +31,7 @@
   width: calc(100% - 28px);
   box-sizing: border-box;
   transition-timing-function: ease;
-  animation-duration: .3s;
+  animation-duration: 1.25s;
   animation-name: FadeIn;
   animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   pointer-events: all;

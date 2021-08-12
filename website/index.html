@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="UTF-8">
+    <title>cosnole.log</title>
+    <meta name="theme-color" content="#EB9292">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./toaster.css">
+  </head>
+  <body>
+
+  <div class="cosnole-alert__navbar" id="navbar">
+    <div class="cosnole-alert__navbar__links">
+      <a target="_blank" href="https://github.com/rrott/cosnole.alert" class="cosnole-alert__navbar__links__image">
+        <img  src="./github.png" alt="cosnole.alert github page"/>
+      </a>
+      <a target="_blank" href="https://github.com/rrott/cosnole.alert/pulls">Pull requests</a>
+      &nbsp;|&nbsp;
+      <a target="_blank" href="https://github.com/rrott/cosnole.alert/issues">Issues</a>
+    </div>
+    <div class="cosnole-alert__navbar__promo">
+      <div class="cosnole-alert__navbar__promo__copy">
+        [ Some space left here to see most common navbars ]
+      </div>
+      <div class="cosnole-alert__navbar__promo__arrows">
+        <span>&nbsp;▶</span>
+        <span>...</span>
+        <span>◀&nbsp;</span></div>
+    </div>
+  </div>
+
+  <div class="cosnole-alert__right__logo">
+    <svg width="126px" height="109px" viewBox="0 0 126 109" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Logo" stroke="none" stroke-width="1" fill="#EB9292" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+          <use xlink:href="#path-1"></use>
+        </mask>
+        <path stroke="#000000" stroke-width="2" d="M63,1.99836164 L124.267002,108 L1.73299801,108 L63,1.99836164 Z"></path>
+      </g>
+    </svg>
+  </div>
+
+  <div class="cosnole-alert__alert-modal" >
+    <div>cosnole.alert says</div>
+    <div>1</div>
+    <div class="cosnole-alert__alert-modal__ok-button">OK</div>
+  </div>
+
+  <section class="cosnole-alert">
+    <section class="cosnole-alert__page">
+      <div class="cosnole-alert__left">
+        <div class="cosnole-alert__header">
+          <h1>cosnole.alert</h1>
+          <div class="cosnole-alert__arrows" >
+            <div>
+            <div class="cosnole-alert__arrows__top__arrow"></div>
+            <div class="cosnole-alert__arrows__top"></div>
+            </div>
+            <div class="cosnole-alert__arrows__middle__arrow"></div>
+            <div class="cosnole-alert__arrows__middle"></div>
+            <div class="cosnole-alert__arrows__bottom"></div>
+            <div class="cosnole-alert__arrows__bottom__arrow"></div>
+          </div>
+        </div>
+        <div class="cosnole-alert__info">
+          Extension to shows logs, errors and warnings as toast messages to help you catch bugs faster.<br/>
+          Extends browser's console object with<br/> the alert() function.
+          <div class="cosnole-alert__info__ok-button">Ok</div>
+        </div>
+        <div class="cosnole-alert__short-info">
+          <ul>
+            <li>reflect console.log() calls in <b>toast messages</b></li>
+            <li>trigger window.<b>alert()</b> on console.<b>log()</b> calls</li>
+            <li>use <b>console</b>.alert() instead of <b>window</b>.alert()</li>
+            <li>define <b>custom global methods</b> to call alert()</li>
+            <li>use <b>regexp</b> or a "stop-word" to call alert()</li>
+            <li>enable it for localhost only or use <b>allow/block-lists</b></li>
+            <li>use it to see console.log() events called in an <b>iframe</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="cosnole-alert__right">
+      </div>
+    </section>
+
+    <section class="cosnole-alert__page">
+      <div class="cosnole-alert__left-short">
+        <div class="cosnole-alert__header">
+          <h2>options</h2>
+        </div>
+      </div>
+      <div class="cosnole-alert__right-wide">
+
+      </div>
+    </section>
+
+    <section class="cosnole-alert__page page3">
+      <div class="cosnole-alert__left">
+        <div class="cosnole-alert__header">
+          <h1>cosnole.alert</h1>
+        </div>
+        <div class="cosnole-alert__info">
+          options
+        </div>
+      </div>
+      <div class="cosnole-alert__right">
+        options
+      </div>
+    </section>
+
+    <section class="cosnole-alert__page">
+      <div class="cosnole-alert__all">
+      </div>
+    </section>
+  </section>
+
+
+
+  </section>
+
+
+
+
+  <script src="./index.js" type="module"></script>
+
+  </body>
+
+</html>

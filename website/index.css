@@ -1,0 +1,277 @@
+body {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.cosnole-alert__navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60px;
+}
+.cosnole-alert__navbar {
+  background-color: black;
+  position: fixed;
+  top: -58px;
+  width: 100%;
+  transition: top 0.3s;
+  z-index: 40;
+  color: white;
+
+}
+.cosnole-alert__navbar a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding-right: 8px;
+  padding-left: 8px;
+  text-decoration: none;
+}
+.cosnole-alert__navbar a:hover {
+  color: lightgrey;
+}
+.cosnole-alert__navbar__links {
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cosnole-alert__navbar__links__image {
+  height: 60px;
+  width: 60px;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cosnole-alert__navbar__links__image img {
+  height: 36px;
+  width: 36px;
+}
+.cosnole-alert__navbar__promo {
+  font-size: 10pt;
+  padding: 5px;
+  color: white;
+  width: 416px;
+}
+.cosnole-alert__navbar__promo__copy {
+  display: flex;
+  justify-content: center;
+}
+.cosnole-alert__navbar__promo__arrows {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cosnole-alert {
+  display: flex;
+  flex-direction: column;
+}
+.cosnole-alert__page {
+  display: flex;
+  flex-direction: row;
+}
+.cosnole-alert__page.page3 .cosnole-alert__right{
+  z-index: 30;
+}
+
+.cosnole-alert__alert-modal {
+  position: fixed;
+  top: -4px;
+  width: 416px;
+  height: 98px;
+  left: calc(50vw - 224px);
+  flex-direction: row;
+  font-size: 12pt;
+  font-family: sans-serif;
+  padding: 1rem;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  z-index: 45;
+  transition-timing-function: ease;
+  animation-duration: .3s;
+  animation-name: AlertFadeIn;
+  animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+.cosnole-alert__alert-modal__ok-button {
+  cursor: default;
+  padding: 6px;
+  width: 53px;
+  border: none;
+  font-weight: 600;
+  font-size: 8pt;
+  border-radius: 4px;
+  position: relative;
+  margin-top: 16px;
+  float: right;
+  color: white;
+  background-color: #0072ff;
+  display: flex;
+  justify-content: center;
+}
+.cosnole-alert__alert-modal__ok-button:hover {
+  opacity: 0.9;
+}
+
+.cosnole-alert__arrows {
+  position: absolute;
+  top: 162px;
+  left: calc(50vw - 8rem);
+  z-index: 10;
+}
+.cosnole-alert__arrows__top {
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 0.5rem;
+}
+.cosnole-alert__arrows__top__arrow {
+  position: sticky;
+    top: 115px;
+  width: 16px;
+  height: 16px;
+  padding-left: calc(10rem - 6px);
+}
+.cosnole-alert__arrows__top__arrow::before {
+  content: "▲";
+}
+.cosnole-alert__arrows__middle {
+  border-top: 2px solid black;
+  width: calc(50vw + 4rem - 380px);
+  height: 2px;
+  margin-bottom: 1.5rem;
+}
+.cosnole-alert__arrows__middle__arrow {
+  width: 16px;
+  height: 18px;
+  padding-left: calc(50vw + 4rem - 380px);
+}
+.cosnole-alert__arrows__middle__arrow::before {
+  content: "▶";
+}
+.cosnole-alert__arrows__bottom {
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+  width: 12rem;
+  height: calc(100vh - 162px - 18rem);
+  margin-bottom: -1rem;
+}
+
+.cosnole-alert__arrows__bottom__arrow {
+  width: 16px;
+  height: 16px;
+  padding-left: calc(12rem - 6px);
+}
+.cosnole-alert__arrows__bottom__arrow::before {
+  content: "▼";
+}
+.cosnole-alert__header {
+  height: 18rem;
+  display: flex;
+  width: 100%;
+}
+.cosnole-alert__header h1 {
+  font-size: calc(100vw / 20);
+  padding: 1rem 1rem 1rem 0;
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+  width: 100%;
+  height: 9rem;
+}
+.cosnole-alert__info {
+  margin-left: 6rem;
+  margin-right: 6rem;
+  border: 2px solid black;
+  padding: 0 1rem 1rem;
+}
+.cosnole-alert__info__ok-button {
+  position: relative;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  float: right;
+  border: 2px solid black;
+  width: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cosnole-alert__short-info {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  font-size: 1.25rem;
+  padding: 1rem 1rem 1rem;
+
+}
+
+.cosnole-alert__short-info ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.cosnole-alert__short-info li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.cosnole-alert__short-info li:before {
+  content: "▶";
+  padding-right: 5px;
+}
+
+
+.cosnole-alert__left {
+  background-color: #EB9292;
+  /*border-right: 2px solid black;*/
+  width: 50vw;
+  min-height: 100vh;
+}
+
+.cosnole-alert__all {
+  background-color: white;
+  /*border-right: 2px solid black;*/
+  width: 100vw;
+  height: 100vh;
+}
+
+.cosnole-alert__right {
+  background-color: white;
+  width: 50vw;
+}
+
+.cosnole-alert__right__logo {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 40;
+}
+
+@keyframes AlertFadeIn {
+  from {
+    transform: translate3d(0, -800px,0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes AlertFadeOut {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(800px, 0, 0);
+    opacity: 0;
+  }
+}
