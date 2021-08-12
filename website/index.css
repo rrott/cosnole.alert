@@ -73,10 +73,12 @@ body {
 .cosnole-alert__page {
   display: flex;
   flex-direction: row;
+  background-color: white;
 }
-.cosnole-alert__page.page3 .cosnole-alert__right{
+.page-top {
   z-index: 30;
 }
+
 
 .cosnole-alert__alert-modal {
   position: fixed;
@@ -132,7 +134,7 @@ body {
 }
 .cosnole-alert__arrows__top__arrow {
   position: sticky;
-    top: 115px;
+  top: 115px;
   width: 16px;
   height: 16px;
   padding-left: calc(10rem - 6px);
@@ -254,6 +256,38 @@ body {
   z-index: 40;
 }
 
+.cosnole-alert__options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cosnole-alert__options__image {
+  width: calc(50vw - 11rem);
+  border: 1px solid lightgray;
+  padding: 1rem;
+  margin: 4rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.cosnole-alert__options__image img {
+  width: 100%;
+  height: 100%;
+}
+
+.cosnole-alert__modes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.cosnole-alert__modes h4 {
+  margin-bottom: 5px;
+}
+.cosnole-alert__modes h5 {
+  margin: 5px;
+  margin-bottom: 1rem;
+}
 @keyframes AlertFadeIn {
   from {
     transform: translate3d(0, -800px,0);

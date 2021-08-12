@@ -157,6 +157,3 @@ function scrollFunction() {
     document.getElementById("navbar").style.top = "-58px";
   }
 }
-    // window.addEventListener('DOMContentLoaded',  () =>
-    //   alert(`cosnole.alert message:\n1`)
-    // )
