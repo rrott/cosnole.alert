@@ -156,5 +156,5 @@ function scrollFunction() {
   } else {
     document.getElementById("navbar").style.top = "-58px";
   }
-  
+
 }
