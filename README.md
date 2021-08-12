@@ -23,7 +23,10 @@ With this extension You can:
 # Installation Instructions
 
 ## From the Chrome Web Store
-TBD
+- Chrome Web Store: [TBD](/#)
+- Microsoft Edge Add-ons: [TBD](/#)
+- Firefox Browser Add-ons: [TBD](/#)
+- Mac App Store: [TBD](/#)
 ## From the source code
 **Google Chrome / Microsoft Edge / Brave** (or any other chromium-based browsers)
 
