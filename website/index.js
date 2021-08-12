@@ -19,7 +19,7 @@ const cosnoleAlert =  () => {
   });
 
   Toaster.add({
-    methodName: "info",
+    methodName: "log",
     message: {
       title: `cosnole.alert`,
       messages: [
@@ -156,4 +156,5 @@ function scrollFunction() {
   } else {
     document.getElementById("navbar").style.top = "-58px";
   }
+  
 }

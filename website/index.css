@@ -221,11 +221,6 @@ body {
   width: 50vw;
   min-height: 100vh;
 }
-.cosnole-alert__all {
-  background-color: white;
-  width: 100vw;
-  height: 100vh;
-}
 .cosnole-alert__right {
   background-color: white;
   width: 50vw;
@@ -259,6 +254,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding-top: 5vh;
 }
 .cosnole-alert__modes-page ul {
   list-style: none;
@@ -271,6 +267,8 @@ body {
 }
 .cosnole-alert__modes-page {
   font-size: 12pt;
+  padding-bottom: 10vh;
+  padding-top: 5vh;
 }
 .cosnole-alert__modes__info {
   border: 2px solid black;
@@ -278,30 +276,27 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  margin: 1rem 6rem;
-}
-.cosnole-alert__modes h4 {
-  margin-bottom: 5px;
+  margin: 0 2.5rem 2.5rem;
 }
 .cosnole-alert__modes h5 {
-  margin: 5px 5px 1rem;
+  margin: 5px;
 }
 .cosnole-alert__modes__left {
-  background-color: white;
   width: 33vw;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem;
+  background-color: white;
 }
 
 .cosnole-alert__modes__middle {
   width: 33vw;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem;
   background-color: #EB9292;
 }
 
 .cosnole-alert__modes__right {
-  background-color: white;
   width: 33vw;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem;
+  background-color: white;
 }
 .cosnole-alert__modes__list {
   display: flex;
@@ -310,6 +305,61 @@ body {
 .cosnole-alert__modes__list-title {
   width: 2rem;
   padding-right: 0.5rem;
+}
+.cosnole-alert__about {
+  background-color: white;
+  width: 100vw;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cosnole-alert__about__instructions {
+  padding-bottom: 10rem;
+}
+.cosnole-alert__about__footer {
+  padding: 2rem 1rem 1rem;
+  width: 100%;
+  height: 120px;
+  border-top: 2px solid black;
+}
+.cosnole-alert__about h4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    margin: 5px;
+
+}
+.cosnole-alert__about__browsers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  justify-content: space-between;
+  max-width: 60rem;
+  margin: auto;
+}
+.cosnole-alert__about__browsers_tbd img {
+  opacity: 0.4;
+}
+.cosnole-alert__about__browsers_tbd div {
+  position: absolute;
+  font-size: 2rem;
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+}
+.cosnole-alert__about__browsers span {
+  height: 6rem;
+  width: 6rem;
+  padding: 0.5rem;
+}
+.cosnole-alert__about__browsers img {
+  width: 100%;
 }
 @keyframes AlertFadeIn {
   from {
