@@ -4,6 +4,8 @@ body {
   font-size: 18pt;
   font-weight: 500;
   line-height: 1.65;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .cosnole-alert {
@@ -57,7 +59,7 @@ body {
   font-size: 10pt;
   padding: 5px;
   color: white;
-  width: 416px;
+  width: 406px;
 }
 .cosnole-alert__navbar__promo__copy {
   display: flex;
@@ -189,8 +191,8 @@ body {
 }
 .cosnole-alert__info__ok-button {
   position: relative;
-  right: 0.5rem;
-  bottom: 0.5rem;
+  right: 0;
+  bottom: 0;
   float: right;
   border: 2px solid black;
   width: 6rem;
@@ -319,7 +321,7 @@ body {
 }
 .cosnole-alert__about__footer {
   padding: 2rem 1rem 1rem;
-  width: 100%;
+  /*width: 100%;*/
   height: 120px;
   border-top: 2px solid black;
 }
@@ -361,6 +363,12 @@ body {
 .cosnole-alert__about__browsers img {
   width: 100%;
 }
+section {
+  width: 100vw;
+}
+.cosnole-alert__navbar__links__issues {
+  display: flex;
+}
 @keyframes AlertFadeIn {
   from {
     transform: translate3d(0, -800px,0);
@@ -379,5 +387,47 @@ body {
   to {
     transform: translate3d(800px, 0, 0);
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 1700px) {
+  .cosnole-alert__info {
+    line-height: 1.25;
+    padding: 1rem 6rem 1rem 1rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+  .cosnole-alert__info__ok-button {
+    margin-right: -5rem;
+  }
+  .cosnole-alert__short-info {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .cosnole-alert__options__image {
+    margin: 2rem;
+    width: calc(50vw - 8rem);
+  }
+}
+@media screen and (max-width: 1246px) {
+  .cosnole-alert__navbar__promo__copy {
+    display: none;
+  }
+  .cosnole-alert__navbar__promo__arrows {
+    display: none;
+  }
+  .cosnole-alert__navbar__links__issues {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1124px) {
+  .cosnole-alert__alert-modal {
+    display: none;
+  }
+  .cosnole-alert__arrows {
+    display: none;
   }
 }
