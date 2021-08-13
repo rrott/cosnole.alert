@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "cosnole.alert",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Roman Rott",
   "description": "Extends browser's console object with the alert() function. Shows console logs/errors/warnings as toast messages to help you catch bugs faster.",
   "short_name": "cosnole.alert",
