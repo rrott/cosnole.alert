@@ -48,15 +48,16 @@ With this extension You can:
 
 ## TODO:
 1. Finish Toast Only mode
-2. Add an option to make all the toast transparent by a menu-click or a hot-key
-3. Add history to the pop-up
-4. Show network events in the toaster
-5. Add a modal to see tracert and objects shown in the toaster
-6. Consider adding some additional controls to the toaster ui to filter toasts and update settings without reloading page
-7. Consider adding other console events to the toaster
-8. Port it to FireFox
-9. Consider porting it to Safari
-10. Add documentation and how-tos
+1. Add an option to make all the toast transparent by a menu-click or a hot-key
+1. Add history to the pop-up
+1. Add short mode to Toasts. It will show the title, and a bit of the truncated message. Close and copy buttons are there.
+1. Show network events in the toaster
+1. Add a modal to see tracert and objects shown in the toaster
+1. Consider adding some additional controls to the toaster ui to filter toasts and update settings without reloading page
+1. Consider adding other console events to the toaster
+1. Port it to FireFox
+1. Consider porting it to Safari
+1. Add documentation and how-tos
 
 
 ### License. 
