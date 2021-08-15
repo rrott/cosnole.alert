@@ -241,10 +241,10 @@ body {
 }
 .cosnole-alert__options__image {
   width: calc(50vw - 11rem);
-  border: 1px solid lightgray;
+  border: 2px solid black;
   padding: 1rem;
   margin: 4rem;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  /*box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);*/
 }
 .cosnole-alert__options__image img {
   width: 100%;
@@ -317,7 +317,9 @@ body {
   justify-content: space-between;
 }
 .cosnole-alert__about__instructions {
-  padding-bottom: 10rem;
+  border: 2px solid black;
+  margin: 4rem 10vw 10rem;
+  padding: 1rem;
 }
 .cosnole-alert__about__footer {
   padding: 2rem 1rem 1rem;
