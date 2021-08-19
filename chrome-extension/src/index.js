@@ -29,9 +29,6 @@ const embedScript = async () => {
     scriptTag.setAttribute("onLoad", `window.cosnoleAlert('${encodedCongig}');`);
     scriptTag.setAttribute("type", "module");
   }
-  if (config.mode === "simple") { 
-    scriptTag.src = chrome.runtime.getURL('src/cosnoleSimpleAlert.js');    
-  }
   (document.head || document.documentElement).appendChild(scriptTag);
 }
 

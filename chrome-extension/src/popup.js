@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     mode: {
       default: document.getElementById('defaultMode'),
       toasts: document.getElementById('toastsMode'),
-      simple: document.getElementById('simpleMode'),         
+      simple: document.getElementById('simpleMode'),
     },
     redefinedMethods: {
       table: document.getElementById('tableMethod'),
@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const className = isOnPause ? 'buttons__pause_active' : 'buttons__pause';
     elements.header.pauseButton.innerHTML = isOnPause ? "[paused]" : "[pause]";
     elements.header.pauseButton.className = className;
+    // chrome.runtime.sendMessage({ "isOnPause" : isOnPause });
   }
 
   const setAllowListButton = () => {
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const addChnageModeHandlers = () => {
-    APP_MODES.map((mode) => 
+    APP_MODES.map((mode) =>
       elements.mode[mode].onclick = async () => {
         setMode(mode);
         setConfig({mode});
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const addChnageRedefinedMethodsHandlers = () => {
-    REDEFINED_METHODS_LIST.map((method) => 
+    REDEFINED_METHODS_LIST.map((method) =>
       elements.redefinedMethods[method].onclick = async () => {
         let redefinedMethods = config.redefinedMethods;
         if (redefinedMethods.includes(method)) {
@@ -211,7 +212,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       elements.lists.allowList.classList.remove("disabled");
     } else if (listOptions.isUseBlockList) {
       elements.lists.blockList.classList.remove("disabled");
-    } 
+    }
   }
 
   const setInitialValues = () => {
@@ -321,7 +322,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       methods = methods.filter((m) => m !== "alert");
       methods = methods.filter((m) => !RESERVED_WORDS.includes(m));
       methods = methods.filter((m) => !(m in window.console));
-      
+
       if (customMethods.includes("alert")) {
         customMethods = [...methods, "alert"]
       } else {

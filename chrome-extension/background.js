@@ -11,7 +11,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   const config = await Config.getConfig();
 
   if (changeInfo.status === 'complete') {
-    if (config.mode === "toasts") { 
+    if (config.mode === "toasts") {
       Promise.all([
         chrome.scripting.executeScript({
           target: { tabId: tabId },

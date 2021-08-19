@@ -67,4 +67,3 @@ Copyright (c) [Roman Rott](https://rrott.com)
 
 Browser's icons are from [browser-logos](https://github.com/alrra/browser-logos)  
 All browsers' logos and trademarks are the property of their respective owners.  
-Everything else is available under the MIT license.
